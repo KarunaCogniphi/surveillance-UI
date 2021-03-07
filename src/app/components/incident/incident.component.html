@@ -1,0 +1,193 @@
+
+ <!-- az-header -->
+ <div class="container-fluid mt-3 mb-5">
+    <div class="mb-3 text-ashdark clearfix">
+       <h4 class="float-left title-head">Incident Dashboard</h4>
+       <div class="float-right">
+          <label class="mr-2 ml-2 f-w-600">Organization</label>
+                <div class="form-group d-inline-block m-0 xs-width">
+                   <select class="form-control border-radius-4" id="sel1">
+                      <option>All</option>
+                      <option>257</option>
+                      <option>35</option>
+                      <option>45</option>
+                   </select>
+                </div>
+       </div>
+    </div>
+    <div class="card-box bg-white">
+        <div class="row">
+       <div class="col p-2">
+          <div class="text-center  border-right">
+             <p class="m-0 text-red f-w-600 f-16">100</p>
+             <p class="m-0 f-w-600">Total Incidents</p>
+          </div>
+       </div>
+       <div class="col p-2">
+          <div class="text-center border-right">
+             <p class="m-0 text-green f-w-600 f-16">60</p>
+             <p class="m-0 f-w-600">Resolved</p>
+          </div>
+       </div>
+       <div class="col p-2">
+          <div class="text-center border-right">
+             <p class="m-0 text-yellow f-w-600 f-16">10</p>
+             <p class="m-0 f-w-600">Open</p>
+          </div>
+       </div>
+       <div class="col p-2">
+          <div class="text-center border-right">
+             <p class="m-0 text-blue f-w-600 f-16">30</p>
+             <p class="m-0 f-w-600">Closed</p>
+          </div>
+       </div>
+       <div class="col p-2">
+          <div class="text-center">
+             <p class="m-0 text-light-yellow f-w-600 f-16">0</p>
+             <p class="m-0 f-w-600">On-hold</p>
+          </div>
+       </div>
+    </div>
+    </div>
+    <div class="row mt-3">
+       <div class="col-md-12">
+          <div class="card-box bg-white display-inherit hei-100">
+             <div class="p-3">
+                <h5 class="title-head"> Incident View Per Customer</h5>
+             </div>
+             <section>
+                <div class="row">
+                   <div class="col-md-5">
+                       <div class="table-responsive bg-white">
+                      <table>
+                         <tr>
+                            <th class="nowarp">
+                                <div class="bg">
+                            <div class="chiller_cb">
+                               <input id="saleDeptcheck-0" type="checkbox">
+                               <label for="saleDeptcheck-0" class="f-12">Customer Name <i class="fas fa-sort"></i></label>
+                               <span></span>
+                            </div>
+                         </div>
+                               </th>
+                            <th class="nowarp">Total <i class="fas fa-sort"></i></th>
+                            <th class="nowarp">Open <i class="fas fa-sort"></i></th>
+                            <th class="nowarp">Resolved <i class="fas fa-sort"></i></th>
+                            <th class="nowarp">Closed <i class="fas fa-sort"></i></th>
+                         </tr>
+                         <tr>
+                            <td> <div class="bg">
+                            <div class="chiller_cb">
+                               <input id="saleDeptcheck-1" type="checkbox">
+                               <label for="saleDeptcheck-1" class="f-w-500 f-12">Customer A</label>
+                               <span></span>
+                            </div>
+                         </div></td>
+                            <td class="nowarp">50</td>
+                            <td>5</td>
+                            <td class="nowarp">10</td>
+                            <td>35</td>
+                         </tr>
+                         <tr class="even">
+                            <td><div class="bg">
+                            <div class="chiller_cb">
+                               <input id="saleDeptcheck-2" type="checkbox">
+                               <label for="saleDeptcheck-2" class="f-w-500 f-12">Customer B</label>
+                               <span></span>
+                            </div>
+                         </div></td>
+                            <td>60</td>
+                            <td>10</td>
+                            <td class="nowarp">10</td>
+                            <td>35</td>
+                         </tr>
+                         <tr>
+                            <td><div class="bg">
+                            <div class="chiller_cb">
+                               <input id="saleDeptcheck-3" type="checkbox">
+                               <label for="saleDeptcheck-3" class="f-w-500 f-12">Customer C</label>
+                               <span></span>
+                            </div>
+                         </div></td>
+                            <td>70</td>
+                            <td>10</td>
+                            <td>10</td>
+                            <td>35</td>
+                         </tr>
+                         <tr class="even">
+                            <td><div class="bg">
+                            <div class="chiller_cb">
+                               <input id="saleDeptcheck-4" type="checkbox">
+                               <label for="saleDeptcheck-4" class="f-w-500 f-12">Customer D</label>
+                               <span></span>
+                            </div>
+                         </div></td>
+                            <td>80</td>
+                            <td>5</td>
+                            <td>10</td>
+                            <td>35</td>
+                         </tr>
+                         <tr>
+                            <td><div class="bg">
+                            <div class="chiller_cb">
+                               <input id="saleDeptcheck-4" type="checkbox">
+                               <label for="saleDeptcheck-4" class="f-w-500 f-12">Customer E</label>
+                               <span></span>
+                            </div>
+                         </div></td>
+                            <td>55</td>
+                            <td>5</td>
+                            <td>5</td>
+                            <td>55</td>
+                         </tr>
+                      </table>
+
+                </div>
+                   </div>
+                   <div class="col-md-3">
+                      <div>
+                         <label class="f-w-600">Average Response Time Per Customer</label>
+                      </div>
+                      <img src="assets/image/graph-1.png" width="100%" alt="graph-1">
+                   </div>
+                   <div class="col-md-2">
+                      <div>
+                         <label class="f-w-600">Resolution Time Distribution</label>
+                      </div>
+                      <img src="assets/image/graph-2.png" alt="graph-2">
+                   </div>
+                  </div>
+             </section>
+          </div>
+       </div>
+    </div>
+
+     <div class="row mt-5">
+       <div class="col-md-12">
+          <div class="card-box bg-white display-inherit hei-100">
+             <div class="p-3 clearfix">
+                <div class="float-left">
+                   <h5 class="title-head"> Incident Report per Month</h5>
+                </div>
+                <div class="float-right">
+                <ul class="nav nav-pills card-box">
+                <li class="active"><a href="#">Per Month</a></li>
+                <li><a href="#">Per Week</a></li>
+                </ul>
+                </div>
+                
+             </div>
+             <section>
+                <div class="ml-5">
+                   <img src="../../../../assets/image/graph-3.png" alt="graph-3" width="100%">
+                </div>
+             </section>
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="footer p-2 card-box">
+     <div class="text-right f-16">
+         Version : 1.0
+     </div>
+ </div>

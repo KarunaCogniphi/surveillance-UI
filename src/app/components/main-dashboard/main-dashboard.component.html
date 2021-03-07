@@ -1,0 +1,155 @@
+<h4>Dashboard page under development</h4>
+
+<!-- az-header -->
+<!-- <button mat-button color="warn">Warn</button>
+<div class="container-fluid mt-3 mb-5">
+   <div class="mb-3 text-ashdark clearfix">
+      <h4 class="float-left title-head">Asset List</h4>
+      <div class="float-right">
+         <div class="d-inline-block mr-2">
+            <button type="button" class="btn btn-small" data-toggle="modal" data-target="#myModal">
+               <i class="fas fa-plus f-16"></i>
+            </button>
+         </div>
+      </div>
+   </div>
+   <div class="row mt-3">
+      <div class="col-md-12">
+         <div class="card-box bg-white display-inherit hei-100">
+            <div class="mb-3 pl-3 pr-3 row">
+               <div class="col-md-6 mt-2">
+                  <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span><input type="text"
+                     class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category"
+                     id="search">
+               </div>
+               <div class="col-md-6 mt-3">
+                  <div class="text-right mr-2">
+                     <div class="d-inline-block mr-3">
+                        <span class="cursor-pointer">
+                           <i class="fas fa-sort icon-blue"></i> <span class="text-darkcolor f-14 ">Sort</span>
+                        </span>
+                     </div>
+                     <div class="dropdown d-inline-block mr-3">
+                        <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
+                           <i class="fas fa-circle-notch icon-blue"></i> <span
+                              class="text-darkcolor f-14 ">Status</span>
+                        </span>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#">Link 1</a>
+                           <a class="dropdown-item" href="#">Link 2</a>
+                           <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                     </div>
+                     <div class="dropdown d-inline-block mr-3">
+                        <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
+                           <i class="fas fa-filter icon-blue"></i> <span class="text-darkcolor f-14 ">Filter</span>
+                        </span>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#">Link 1</a>
+                           <a class="dropdown-item" href="#">Link 2</a>
+                           <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                     </div>
+                     <div class="d-inline-block mr-3">
+                        <span class="cursor-pointer">
+                           <i class="fas fa-columns icon-blue"></i> <span class="text-darkcolor f-14 ">Column</span>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <section>
+               <div class="table-responsive bg-white">
+                  <table>
+                     <tr>
+                        <th class="nowarp">
+                           <div class="bg">
+                              <div class="chiller_cb">
+                                 <input id="saleDeptcheck-0" type="checkbox">
+                                 <label for="saleDeptcheck-0" class="f-12">ID <i class="fas fa-sort"></i></label>
+                                 <span></span>
+                              </div>
+                           </div>
+                        </th>
+                        <th class="nowarp">Name <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Category <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Value <i class="fas fa-sort"></i></th>
+                        <th class="nowarp text-center">Priority <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Location <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Assigned <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Type <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Status <i class="fas fa-sort"></i></th>
+                        <th class="nowarp">Options</th>
+                     </tr>
+                     <tr>
+                        <td class="nowarp">
+                           <div class="bg">
+                              <div class="chiller_cb">
+                                 <input id="saleDeptcheck-1" type="checkbox">
+                                 <label for="saleDeptcheck-1" class="f-w-500 f-12">BM 1</label>
+                                 <span></span>
+                              </div>
+                           </div>
+                        </td>
+                        <td class="nowarp">Branch 1</td>
+                        <td class="nowarp">Branch</td>
+                        <td>50</td>
+                        <td class="text-center"><span class="badge badge-high">High</span></td>
+                        <td>1st line, TVM</td>
+                        <td>CAM 0001</td>
+                        <td>Fixed</td>
+                        <td><span class="dot-red dot-bg-active">Active </span></td>
+                        <td class="nowarp">
+                           <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
+                              data-placement="top" title="" data-original-title="image"></i>
+                           <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
+                              data-placement="top" title="" data-original-title="link"></i>
+                           <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
+                              title="" data-original-title="Edit"></i>
+                        </td>
+                     </tr>
+                     <tr class="even">
+                        <td>
+                           <div class="bg">
+                              <div class="chiller_cb">
+                                 <input id="saleDeptcheck-2" type="checkbox">
+                                 <label for="saleDeptcheck-2" class="f-w-500 f-12">BM 2</label>
+                                 <span></span>
+                              </div>
+                           </div>
+                        </td>
+                        <td>Branch 2</td>
+                        <td>Branch</td>
+                        <td class="nowarp">50</td>
+                        <td><span class="badge badge-medium">Medium</span></td>
+                        <td>1st line, TVM</td>
+                        <td>CAM 0002</td>
+                        <td>Fixed</td>
+                        <td><span class="dot-red dot-bg-red">Inactive </span></td>
+                        <td class="nowarp">
+                           <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
+                              data-placement="top" title="" data-original-title="image"></i>
+                           <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
+                              data-placement="top" title="" data-original-title="link"></i>
+                           <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
+                              title="" data-original-title="Edit"></i>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </section>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="text-right ml-3 float-right p-3 ">
+   <ul class="pagination m-0 pos-b-3 card-box">
+      <li class="page-item"><a class="page-btn pad-btn-radius-left" href="#">1</a></li>
+      <li class="page-item"><a class="page-btn" href="#">2</a></li>
+      <li class="page-item"><a class="page-btn" href="#">3</a></li>
+      <li class="page-item"><a class="page-btn pad-btn-radius-right" href="#">4</a></li>
+   </ul>
+</div> -->
+
+
+<!-- <h4 class="float-left title-head">Asset List</h4> -->
