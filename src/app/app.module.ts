@@ -15,6 +15,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AddAssetComponent } from './components/asset-list/add-asset/add-asset.component';
+import { IncidentListComponent } from './components/incident/incident-list/incident-list.component';
+import { EditAssetComponent } from './components/asset-list/edit-asset/edit-asset.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddIncidentComponent } from './components/incident/add-incident/add-incident.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +29,17 @@ import { AddAssetComponent } from './components/asset-list/add-asset/add-asset.c
     NotFoundComponent,
     IncidentComponent,
     SlaComponent,
-    AddAssetComponent
+    AddAssetComponent,
+    IncidentListComponent,
+    EditAssetComponent,
+    AddIncidentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

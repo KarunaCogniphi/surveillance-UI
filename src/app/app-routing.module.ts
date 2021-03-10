@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AssetListComponent } from './components/asset-list/asset-list.component';
+import { IncidentListComponent } from './components/incident/incident-list/incident-list.component';
 import { IncidentComponent } from './components/incident/incident.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'asset-list', component: AssetListComponent },
   { path: 'sla', component: SlaComponent },
   { path: 'incident', component: IncidentComponent },
+  { path: 'incident-list', component: IncidentListComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

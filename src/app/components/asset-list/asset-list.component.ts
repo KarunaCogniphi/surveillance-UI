@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+
 export interface PeriodicElement {
   ID: string;
   Name: string;
@@ -37,6 +38,8 @@ export class AssetListComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'ID', 'Name', 'Category', 'Value', 'Priority', 'Location', 'Assigned', 'Type', 'Status', 'Options'];
   tabIndex: any;
+  assetName: any;
+  curRow: any;
 
   constructor() { }
 
@@ -76,8 +79,14 @@ export class AssetListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  
-  onTabClick(index){
+
+  onTabClick(index) {
     this.tabIndex = index;
-}
+  }
+
+  editRow(assetName, curRow) {
+    this.assetName = assetName;
+    this.curRow = curRow;
+    // console.log(this.assetName, curRow);
+  }
 }
