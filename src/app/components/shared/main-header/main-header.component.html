@@ -1,61 +1,62 @@
 <div class="az-header nav-bar-bg">
-    <div class="container-fluid">
-       <div class="az-header-left">
-          <a href="#" class="az-logo mrl-2"><img src="assets/image/logo.png" class="mt-2" height="80px"></a>
-          <a href="" id="azNavShow" class="az-header-menu-icon d-lg-none"><span></span></a>
-       </div>
-       <!-- az-header-left -->
-       <div class="az-navbar az-navbar-two">
-          <div><a href="#" class="az-logo"><img src="assets/image/logo.png" height="80px"></a></div>
-          <ul class="nav">
-             <li class="nav-item ">
-                <a href="main-dashboard" class="nav-link">Dashboard</a>
-             </li>
-             <li class="nav-item active">
-                <a href="asset-list" class="nav-link">Asset</a>
-             </li>
-             <li class="nav-item">
-                <a href="sla" class="nav-link">SLA</a>
-             </li>
-             <li class="nav-item active">
-                <a href="incident-list" class="nav-link">Incident</a>
-             </li>
-             <li class="nav-item ">
-                <a href="" class="nav-link">Alerts</a>
-             </li>
-             <li class="nav-item">
-                <a href="" class="nav-link">Administration</a>
-             </li>
-          </ul>
-       </div>
-       <!-- az-navbar -->
-       <div class="az-header-right">
-          <!-- az-header-notification -->
-          <div class="dropdown az-profile-menu">
-             <img src="https://via.placeholder.com/60x60" class="az-img-user mr-2 cursor-pointer" alt=""><span class="user-name cursor-pointer">Tim Brown <i class="fas fa-sort-down ml-1"></i></span>
-             <div class="dropdown-menu">
-                <div class="az-dropdown-header d-sm-none">
-                   <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
-                </div>
-                <div class="az-header-profile">
-                   <div class="az-img-user">
-                      <img src="https://via.placeholder.com/500x500" alt="">
-                   </div>
-                   <!-- az-img-user -->
-                   <h6>Aziana Pechon</h6>
-                   <span>Premium Member</span>
-                </div>
-                <!-- az-header-profile -->
-                <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-                <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
-                <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
-                <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
-                <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
-             </div>
-             <!-- dropdown-menu -->
-          </div>
-       </div>
-       <!-- az-header-right -->
-    </div>
-    <!-- container -->
- </div>
+   <div class="container-fluid">
+      <div class="az-header-left">
+         <a href="#" class="az-logo mrl-2"><img src="assets/image/logo.png" class="mt-2" height="80px"></a>
+         <a href="" id="azNavShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+      </div>
+      <!-- az-header-left -->
+      <div class="az-navbar az-navbar-two">
+         <div><a href="#" class="az-logo"><img src="assets/image/logo.png" height="80px"></a></div>
+         <ul class="nav">
+            <li class="nav-item " [routerLinkActive]="['active']">
+               <a [routerLink]="['main-dashboard']" class="nav-link">Dashboard</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+               <a [routerLink]="['asset-list']" class="nav-link">Asset</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+               <a [routerLink]="['sla']" class="nav-link">SLA</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+               <a [routerLink]="['incident-list']" class="nav-link">Incident</a>
+            </li>
+            <li class="nav-item " [routerLinkActive]="['active']">
+               <a [routerLink]="['aa']" class="nav-link">Alerts</a>
+            </li>
+            <li class="nav-item" [routerLinkActive]="['active']">
+               <a [routerLink]="['dd']" class="nav-link">Administration</a>
+            </li>
+         </ul>
+      </div>
+      <!-- az-navbar -->
+      <div class="az-header-right">
+         <!-- az-header-notification -->
+         <div class="dropdown az-profile-menu">
+            <img src="https://via.placeholder.com/60x60" class="az-img-user mr-2 cursor-pointer" alt=""><span
+               class="user-name cursor-pointer">Tim Brown <i class="fas fa-sort-down ml-1"></i></span>
+            <div class="dropdown-menu">
+               <div class="az-dropdown-header d-sm-none">
+                  <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+               </div>
+               <div class="az-header-profile">
+                  <div class="az-img-user">
+                     <img src="https://via.placeholder.com/500x500" alt="">
+                  </div>
+                  <!-- az-img-user -->
+                  <h6>Aziana Pechon</h6>
+                  <span>Premium Member</span>
+               </div>
+               <!-- az-header-profile -->
+               <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
+               <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+               <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
+               <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
+               <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
+            </div>
+            <!-- dropdown-menu -->
+         </div>
+      </div>
+      <!-- az-header-right -->
+   </div>
+   <!-- container -->
+</div>

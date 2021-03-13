@@ -1,3 +1,4 @@
+<form class="assetForm" [formGroup]="createAssetForm">
 <div class="modal" id="myModal">
     <div class="modal-dialog" style="max-width: 600px">
        <div class="modal-content">
@@ -11,13 +12,13 @@
                    <div class="col-md-3">
                       <div class="form-group">
                          <label class="f-w-600 title-head-ash">ID</label>
-                         <input type="text" class="form-control" placeholder="123" disabled id="name1">
+                         <input type="text" class="form-control" placeholder="123" disabled id="name1" formControlName="id">
                       </div>
                    </div>
                    <div class="col-md-9">
                       <div class="form-group">
                          <label class="f-w-600 title-head-ash">Asset Name</label>
-                         <input type="text" class="form-control" id="name2">
+                         <input type="text" class="form-control" id="name2" formControlName="name">
                       </div>
                    </div>
                 </div>
@@ -25,18 +26,15 @@
                    <div class="col-md-6">
                       <div class="form-group">
                          <label for="sel1" class="f-w-600 title-head-ash">Asset Category</label>
-                         <select class="form-control" id="sel1">
-                            <option>Select</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                         <select class="form-control" id="sel1" formControlName="category">
+                            <option *ngFor="let category of categoryArray">{{category.name}}</option>
                          </select>
                       </div>
                    </div>
                    <div class="col-md-6">
                       <div class="form-group">
                          <label class="f-w-600 title-head-ash">Asset Value</label>
-                         <input type="text" class="form-control" id="name3">
+                         <input type="text" class="form-control" id="name3" formControlName="value">
                       </div>
                    </div>
                 </div>
@@ -44,11 +42,8 @@
                    <div class="col-md-6">
                       <div class="form-group">
                          <label for="sel1" class="f-w-600 title-head-ash">Priority</label>
-                         <select class="form-control" id="sel1">
-                            <option>Select</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                         <select class="form-control" id="sel1" formControlName="priority">
+                            <option *ngFor="let priority of priorityArray">{{priority.name}}</option>
                          </select>
                       </div>
                    </div>
@@ -80,7 +75,7 @@
                    <div class="col-md-4">
                       <div class="form-group">
                          <label class="f-w-600 title-head-ash">Assigned To</label>
-                         <input type="text" class="form-control" id="name5">
+                         <input type="text" class="form-control" id="name5" formControlName="assignedTo">
                       </div>
                    </div>
                    <div class="col-md-4">
@@ -112,22 +107,16 @@
                    <div class="col-md-4">
                       <div class="form-group">
                          <label for="sel1" class="f-w-600 title-head-ash">Type</label>
-                         <select class="form-control" id="sel1">
-                            <option>Select</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                         <select class="form-control" id="sel1" formControlName="type">
+                            <option *ngFor="let type of typeArray">{{type.name}}</option>
                          </select>
                       </div>
                    </div>
                    <div class="col-md-4">
                       <div class="form-group">
                          <label for="sel1" class="f-w-600 title-head-ash">Status</label>
-                         <select class="form-control" id="sel1">
-                            <option>Select</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                         <select class="form-control" id="sel1" formControlName="status">
+                           <option *ngFor="let status of statusArray">{{status.name}}</option>
                          </select>
                       </div>
                    </div>
@@ -161,9 +150,10 @@
              </div>
           </div>
           <div class="modal-footer">
-             <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal">Create</button>
+             <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal" (click)="createAsset(createAssetForm.value)" >Create</button>
              <a href="#"> <span class="mr-3 text-datkgreen f-w-600 cursor-pointer">Cancel</span> </a>
           </div>
        </div>
     </div>
  </div>
+</form>
