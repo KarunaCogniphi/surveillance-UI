@@ -1,3 +1,4 @@
+<form [formGroup]="createIncidentForm">
 <div class="modal" id="myModal">
     <div class="modal-dialog" style="max-width: 600px">
         <div class="modal-content">
@@ -29,13 +30,13 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="f-w-600 title-head-ash">Description</label>
-                                <input type="text" class="form-control" placeholder="Enter the Description" id="des">
+                                <input type="text" class="form-control" placeholder="Enter the Description" id="des" formControlName="desc">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="f-w-600 title-head-ash">Asset ID</label>
-                                <input type="text" class="form-control" placeholder="Autocomplete" id="assId">
+                                <input type="text" class="form-control" placeholder="Autocomplete" id="assId" formControlName="assetId">
                             </div>
                         </div>
                     </div>
@@ -43,33 +44,24 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="sel1" class="f-w-600 title-head-ash">Status</label>
-                                <select class="form-control" id="sel1">
-                                    <option>Select</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                <select class="form-control" id="sel1" formControlName="status">
+                                    <option *ngFor="let status of statusArray">{{status.name}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="sel1" class="f-w-600 title-head-ash">Priority</label>
-                                <select class="form-control" id="sel1">
-                                    <option>Select</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                <select class="form-control" id="sel1" formControlName="priority">
+                                    <option *ngFor="let priority of priorityArray">{{priority.name}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="sel1" class="f-w-600 title-head-ash">Severity</label>
-                                <select class="form-control" id="sel1">
-                                    <option>Select</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                <select class="form-control" id="sel1" formControlName="severity">
+                                    <option *ngFor="let severity of severityArray">{{severity.name}}</option>
                                 </select>
                             </div>
                         </div>
@@ -126,9 +118,10 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal">Create</button>
+                <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal" (click)="createIncident(createIncidentForm.value)">Create</button>
                 <a href="#"> <span class="mr-3 text-datkgreen f-w-600 cursor-pointer">Cancel</span> </a>
             </div>
         </div>
     </div>
 </div>
+</form>

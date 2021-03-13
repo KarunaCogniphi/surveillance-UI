@@ -142,7 +142,7 @@
                <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip" data-placement="top"
                   title="" data-original-title="link"></i>
                <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Edit"></i>
+                  data-original-title="Edit" (click)="onTabClick('add-incident')" data-toggle="modal" data-target="#myModal"></i>
             </td>
          </ng-container>
 
@@ -154,4 +154,4 @@
    </div>
 </div>
 
-<add-incident *ngIf="tabIndex === 'add-incident'"></add-incident>
+<add-incident *ngIf="tabIndex === 'add-incident'" [curRow]="curRow"></add-incident>

@@ -41,6 +41,8 @@ export class IncidentListComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'Id', 'Desc', 'AssetId', 'Priority', 'Severity', 'SlaBreach', 'Category', 'SubCategory', 'CreationTime', 'AssignedTo', 'Status', 'Remark', 'Action'];
   tabIndex: any;
+  curRow: any;
+  incidentName: any;
 
   constructor() { }
 
@@ -114,4 +116,10 @@ export class IncidentListComponent implements OnInit {
       return 'text-red';
     }
   }
+
+  // editRow(assetName, curRow) {
+  //   this.tabIndex = assetName;
+  //   this.curRow = curRow;
+  //    console.log(this.tabIndex, curRow);
+  // }
 }
