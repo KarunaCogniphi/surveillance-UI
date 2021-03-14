@@ -31,6 +31,9 @@ export class AddAssetComponent implements OnInit {
     { id: 2, name: 'Inactive' },
   ];
   createAssetForm: FormGroup;
+  fileToUpload: any;
+  imageUrl: any;
+  fileName: any;
   constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -49,4 +52,18 @@ export class AddAssetComponent implements OnInit {
   createAsset(formData) {
     console.log('formData', formData);
   }
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+    if(!!this.fileToUpload) {
+      this.fileName = this.fileToUpload.name;
+    }
+    
+    //Show image preview
+    let reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
 }
