@@ -26,8 +26,8 @@
                   <div class="row">
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label for="sel1" class="f-w-600 title-head-ash">Asset Category</label>
-                           <select class="form-control" id="sel1" formControlName="category">
+                           <label for="sel3" class="f-w-600 title-head-ash">Asset Category</label>
+                           <select class="form-control" id="sel3" formControlName="category">
                               <option *ngFor="let category of categoryArray">{{category.name}}</option>
                            </select>
                         </div>
@@ -42,8 +42,8 @@
                   <div class="row">
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label for="sel1" class="f-w-600 title-head-ash">Priority</label>
-                           <select class="form-control" id="sel1" formControlName="priority">
+                           <label for="sel4" class="f-w-600 title-head-ash">Priority</label>
+                           <select class="form-control" id="sel4" formControlName="priority">
                               <option *ngFor="let priority of priorityArray">{{priority.name}}</option>
                            </select>
                         </div>
@@ -51,38 +51,46 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label class="f-w-600 title-head-ash">Location</label>
-                           <input type="text" class="form-control" id="name4">
+                           <input type="text" class="form-control" id="name4" formControlName="location">
                         </div>
                      </div>
                   </div>
-                  
+
                   <div class="row">
                      <div class="col-md-6">
                         <label class="f-w-600 title-head-ash">Upload Assets Image</label>
                         <div class="file btn btn-lg upload-btn-drop">
                            <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label
                               class="f-w-600 title-head-ash f-12">Upload Image</label>
-                           <input type="file" class="upload-input-drop" #Image type="file" (change)="handleFileInput($event.target.files)" />
+                           <input type="file" class="upload-input-drop" #Image
+                              (change)="handleFileInput2($event)" />
                            <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" /> -->
                            <!-- <input #Image type="file" (change)="handleFileInput($event.target.files)"/> -->
 
                         </div>
-                        <span class="mt-2">{{fileName}}</span>
+                        <!-- <li *ngFor="let image of imageFiles"><span class="mt-2" >{{image.name}}</span></li> -->
+                        
+                        <ul>
+                           <li *ngFor="let image of imageFiles"><span>{{image.name}}</span><span class="close" style="display: block;" (click)="removeImage(image)" >&times;</span></li>
+                           <!-- <li>Calvin<span class="close">&times;</span></li> -->
+                        </ul>
                         <div *ngIf="imageUrl" class="border border-primary mt-3 rounded">
-                        <img [src]="imageUrl" class="image img-fluid img-thumbnail">
-                     </div>
+                           <img [src]="imageUrl" class="image img-fluid img-thumbnail">
+                        </div>
                      </div>
                      <div class="col-md-6">
                         <div class="mt-1-7">
-                           <button type="button" class="btn btn-small" data-toggle="modal" data-target="#myModal">
+                           <button type="button" class="btn btn-small" (click)="file.click()">
                               <i class="fas fa-plus f-16"></i>
                            </button>
+                           <!-- <input type="button"  value="Grab file"> -->
+                           <input type="file" id="my_file" #file (change)="handleFileInput2($event)">
                         </div>
                      </div>
-                     <div class="avatar-preview">
+                     <!-- <div class="avatar-preview">
                         <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
                         </div>
-                     </div>
+                     </div> -->
                   </div>
                   <div class="row mt-3">
                      <div class="col-md-4">
@@ -96,12 +104,23 @@
                            <label class="f-w-600 title-head-ash">From Date</label>
                            <div class="input-group date datetimepicker">
                               <div class="input-group-prepend input-group-addon ">
-                                 <div class="input-group-text bg-white pad-btn-radius-left"><i
-                                       class="far fa-calendar-alt f-20"></i></div>
+                                 <div class="input-group-text bg-white pad-btn-radius-left">
+                                    <!-- <mat-datepicker-toggle class="far" matSuffix [for]="picker" style="z-index: 10;"> -->
+                                       <i class="far fa-calendar-alt f-20"></i>
+                                    <!-- </mat-datepicker-toggle> -->
+                                 </div>
                               </div>
-                              <input type='text' class="form-control border-radius-4" />
+                              <input type='text' class="form-control border-radius-4" [matDatepicker]="picker" />
+                              <!-- <mat-datepicker-toggle matSuffix [for]="picker" style="z-index: 10;"></mat-datepicker-toggle> -->
+                              <mat-datepicker #picker startView="year" [startAt]="startDate" style="z-index: 10;">
+                              </mat-datepicker>
                            </div>
                         </div>
+                        <!-- <mat-form-field appearance="fill" >
+                           <mat-label>Choose a date</mat-label>
+                           <input matInput [matDatepicker]="picker">
+                           
+                         </mat-form-field> -->
                      </div>
                      <div class="col-md-4">
                         <div class="form-group m-0">
@@ -127,8 +146,8 @@
                      </div>
                      <div class="col-md-4">
                         <div class="form-group">
-                           <label for="sel1" class="f-w-600 title-head-ash">Status</label>
-                           <select class="form-control" id="sel1" formControlName="status">
+                           <label for="sel2" class="f-w-600 title-head-ash">Status</label>
+                           <select class="form-control" id="sel2" formControlName="status">
                               <option *ngFor="let status of statusArray">{{status.name}}</option>
                            </select>
                         </div>
@@ -165,7 +184,7 @@
             <div class="modal-footer">
                <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal"
                   (click)="createAsset(createAssetForm.value)">Create</button>
-               <a href="#"> <span class="mr-3 text-datkgreen f-w-600 cursor-pointer">Cancel</span> </a>
+               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" data-dismiss="modal">Cancel</span>
             </div>
          </div>
       </div>

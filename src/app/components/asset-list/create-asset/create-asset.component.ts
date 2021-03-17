@@ -1,12 +1,12 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'add-asset',
-  templateUrl: './add-asset.component.html',
-  styleUrls: ['./add-asset.component.css']
+  selector: 'create-asset',
+  templateUrl: './create-asset.component.html',
+  styleUrls: ['./create-asset.component.css']
 })
-export class AddAssetComponent implements OnInit {
+export class CreateAssetComponent implements OnInit {
 
   categoryArray = [
     { id: 0, name: 'Select Category' },
@@ -34,6 +34,9 @@ export class AddAssetComponent implements OnInit {
   fileToUpload: any;
   imageUrl: any;
   fileName: any;
+  startDate = new Date(1990, 0, 1);
+  imageFiles = [];
+
   constructor(private formbuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -43,6 +46,7 @@ export class AddAssetComponent implements OnInit {
       category: [],
       value: [''],
       priority: [],
+      location: [''],
       assignedTo: [''],
       type: [''],
       status: [''],
@@ -52,12 +56,12 @@ export class AddAssetComponent implements OnInit {
   createAsset(formData) {
     console.log('formData', formData);
   }
+  
   handleFileInput(file: FileList) {
     this.fileToUpload = file.item(0);
-    if(!!this.fileToUpload) {
+    if (!!this.fileToUpload) {
       this.fileName = this.fileToUpload.name;
     }
-    
     //Show image preview
     let reader = new FileReader();
     reader.onload = (event: any) => {
@@ -65,5 +69,17 @@ export class AddAssetComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
   }
+  handleFileInput2(event) {
+    const files = event.target.files;
+    if(!!files) {
+      this.imageFiles.push(files[0]);
+    }
+  }
 
+  removeImage(image) {
+    console.log(this.imageFiles.length);
+    const indx = this.imageFiles.indexOf(image);
+    this.imageFiles.splice(indx,1);
+    // console.log(this.imageFiles.length);
+  }
 }

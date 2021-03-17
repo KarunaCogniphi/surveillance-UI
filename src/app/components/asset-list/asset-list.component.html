@@ -16,9 +16,9 @@
          <input type="text" class="form-control" placeholder="Search">
        </div> -->
       <div class="col-md-6 mt-2">
-         <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span><input type="text"
-            class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category" id="search"
-            (keyup)="applyFilter($event)">
+         <!-- <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span> -->
+         <input type="text" class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category"
+            id="search" (keyup)="applyFilter($event)">
       </div>
       <div class="col-md-6 mt-3">
          <div class="text-right mr-2">
@@ -140,7 +140,8 @@
                <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip" data-placement="top"
                   title="" data-original-title="link"></i>
                <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Edit" data-toggle="modal" data-target="#myModal2" (click)="editRow('edit-asset', element)"></i>
+                  data-original-title="Edit" data-toggle="modal" data-target="#myModal2"
+                  (click)="editRow('edit-asset', element)"></i>
             </td>
 
          </ng-container>
@@ -152,5 +153,5 @@
    </div>
 </div>
 
-<add-asset *ngIf="tabIndex === 'add-asset'"></add-asset>
+<create-asset *ngIf="tabIndex === 'add-asset'"></create-asset>
 <edit-asset *ngIf="assetName === 'edit-asset'" [curRow]="curRow"></edit-asset>

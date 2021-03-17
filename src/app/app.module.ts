@@ -11,10 +11,7 @@ import { MaterialModule } from './components/shared/material-module';
 import { IncidentComponent } from './components/incident/incident.component';
 import { SlaComponent } from './components/sla/sla.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import { AddAssetComponent } from './components/asset-list/add-asset/add-asset.component';
+import { CreateAssetComponent } from './components/asset-list/create-asset/create-asset.component';
 import { IncidentListComponent } from './components/incident/incident-list/incident-list.component';
 import { EditAssetComponent } from './components/asset-list/edit-asset/edit-asset.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +26,7 @@ import { AddIncidentComponent } from './components/incident/add-incident/add-inc
     NotFoundComponent,
     IncidentComponent,
     SlaComponent,
-    AddAssetComponent,
+    CreateAssetComponent,
     IncidentListComponent,
     EditAssetComponent,
     AddIncidentComponent
