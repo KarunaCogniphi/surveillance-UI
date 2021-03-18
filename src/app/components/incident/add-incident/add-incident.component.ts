@@ -12,7 +12,7 @@ export class AddIncidentComponent implements OnInit {
     { id: 0, name: 'Select Status' },
     { id: 1, name: 'Close' },
     { id: 2, name: 'Open' },
-    { id: 3, name: 'Close' },
+    { id: 3, name: 'InProgress' },
   ];
   severityArray = [
     { id: 0, name: 'Select Severity' },

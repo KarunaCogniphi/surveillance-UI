@@ -41,7 +41,7 @@ export class CreateAssetComponent implements OnInit {
 
   ngOnInit(): void {
     this.createAssetForm = this.formbuilder.group({
-      id: [1225],
+      id: [],
       name: [''],
       category: [],
       value: [''],
