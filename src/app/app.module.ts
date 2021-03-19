@@ -16,6 +16,7 @@ import { IncidentListComponent } from './components/incident/incident-list/incid
 import { EditAssetComponent } from './components/asset-list/edit-asset/edit-asset.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddIncidentComponent } from './components/incident/add-incident/add-incident.component';
+import { AlertsComponent } from './components/alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AddIncidentComponent } from './components/incident/add-incident/add-inc
     CreateAssetComponent,
     IncidentListComponent,
     EditAssetComponent,
-    AddIncidentComponent
+    AddIncidentComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,

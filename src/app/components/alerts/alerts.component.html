@@ -1,0 +1,232 @@
+<div class="container-fluid mt-3 mb-5">
+    <div class="mb-3 text-ashdark clearfix">
+        <h2 class="float-left title-head">Alert Inbox</h2>
+        <div class="float-right">
+            <label class="mr-2 ml-2 f-w-600">Organization</label>
+            <div class="form-group d-inline-block m-0 xs-width">
+                <select class="form-control border-radius-4" id="sel1">
+                    <option>All</option>
+                    <option>257</option>
+                    <option>35</option>
+                    <option>45</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="row  justify-content-center">
+            <div class="col-md-10 card-box bg-white">
+                <div class="row">
+                    <div class="col p-2">
+                        <div class="clearfix border-right">
+                            <div class="float-left pl-3 pt-2 pb-2">
+                                <i class="fas fa-exclamation-triangle red-bulb"></i>
+                            </div>
+                            <div class="float-left ml-2 pt-3">
+                                <h4><span class="text-red-color">16</span> Critical Alert</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col p-2">
+                        <div class="clearfix border-right">
+                            <div class="float-left pl-3 pt-2 pb-2">
+                                <i class="fas fa-exclamation-triangle yellow-bulb"></i>
+                            </div>
+                            <div class="float-left ml-2 pt-3">
+                                <h4><span class="text-yellow-color">09</span> Warning Alert</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col p-2">
+                        <div class="clearfix">
+                            <div class="float-left pl-3 pt-2 pb-2">
+                                <i class="fas fa-exclamation-triangle orange-bulb"></i>
+                            </div>
+                            <div class="float-left ml-2 pt-3">
+                                <h4><span class="text-orange-color">04</span> Error Alert</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card-box bg-white display-inherit hei-100">
+                <div class="mb-3 pl-3 pr-3 row">
+                    <div class="col-md-6 mt-2">
+                        <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span><input type="text"
+                            class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category"
+                            id="search" (keyup)="applyFilter($event)">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="text-right mr-2">
+                            <!-- <div class="d-inline-block mr-3">
+                         <span class="cursor-pointer">
+                         <i class="fas fa-sort icon-blue"></i> <span class="text-darkcolor f-14 ">Sort</span>
+                         </span>
+                      </div> -->
+                            <div class="dropdown d-inline-block mr-3">
+                                <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
+                                    <i class="fas fa-circle-notch icon-blue"></i> <span
+                                        class="text-darkcolor f-14 ">Status</span>
+                                </span>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Link 1</a>
+                                    <a class="dropdown-item" href="#">Link 2</a>
+                                    <a class="dropdown-item" href="#">Link 3</a>
+                                </div>
+                            </div>
+                            <div class="dropdown d-inline-block mr-3">
+                                <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
+                                    <i class="fas fa-filter icon-blue"></i> <span
+                                        class="text-darkcolor f-14 ">Filter</span>
+                                </span>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Link 1</a>
+                                    <a class="dropdown-item" href="#">Link 2</a>
+                                    <a class="dropdown-item" href="#">Link 3</a>
+                                </div>
+                            </div>
+                            <div class="d-inline-block mr-3">
+                                <span class="cursor-pointer">
+                                    <i class="fas fa-columns icon-blue"></i> <span
+                                        class="text-darkcolor f-14 ">Column</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section>
+                    <div class="table-responsive">
+                        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="select">
+                                <th mat-header-cell *matHeaderCellDef>
+                                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                        [checked]="selection.hasValue() && isAllSelected()"
+                                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                        [aria-label]="checkboxLabel()">
+                                    </mat-checkbox>
+                                </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <mat-checkbox (click)="$event.stopPropagation()"
+                                        (change)="$event ? selection.toggle(row) : null"
+                                        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                    </mat-checkbox>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="alertId">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Alert ID
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.alertId}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="alertName">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Alert Name
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.alertName}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="alertType">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Alert Type
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.alertType}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="status">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Status
+                                </th>
+                                <td mat-cell *matCellDef="let element"> <span [ngClass]="statusStyle(element.status)">
+                                        {{element.status}} </span></td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="severity">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Severity
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <span [ngClass]="severityStyle(element.severity)">{{element.severity}}</span>
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="dateAndTime">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Date and Time
+                                </th>
+                                <td mat-cell *matCellDef="let element">
+                                    {{element.date}} <i class="fas fa-clock clock-green"></i>
+                                    {{element.time}}
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="actionTaken">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action Taken
+                                </th>
+                                <td mat-cell *matCellDef="let element"> {{element.actionTaken}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="action">
+                                <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
+                                <td mat-cell *matCellDef="let element" class="nowarp">
+                                    <i class="fas fa-envelope clock-green cursor-pointer mr-2 f-16"
+                                        data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="mail"></i>
+                                    <i class="fas fa-phone-square clock-green cursor-pointer mr-2 f-16"
+                                        data-toggle="tooltip" data-placement="top" title=""
+                                        data-original-title="call"></i>
+                                    <i class="fas fa-comment clock-green cursor-pointer mr-2 f-16" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="sms"></i>
+                                    <i class="fas fa-video clock-green cursor-pointer mr-2 f-16" data-toggle="tooltip"
+                                        data-placement="top" title="" data-original-title="View video recording"></i>
+                                        <i class="fas fa-ellipsis-h clock-green cursor-pointer f-18"></i>
+                                </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                (click)="selection.toggle(row)">
+                            </tr>
+                        </table>
+                        <mat-paginator [pageSizeOptions]="[3, 10, 25, 100]"></mat-paginator>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="row mt-2">
+            <div class="col-md-4">
+                <div class="bg-white card-box p-3">
+                    <div>
+                        <h5 class="title-head"> Alert Status</h5>
+                    </div>
+                    <div>
+                        <img src="../../../assets/image/graph-4.PNG" alt="graph-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-white card-box p-3">
+                    <div>
+                        <h5 class="title-head"> Severity</h5>
+                    </div>
+                    <div class=" mt-3">
+                        <img src="../../../assets/image/graph-5.PNG" alt="graph-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="bg-white card-box p-3">
+                    <div>
+                        <h5 class="title-head">Trend Graph</h5>
+                    </div>
+                    <div class="mt-3">
+                        <img src="../../../assets/image/graph-6.PNG" alt="graph-3" width="100%" height="500px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
