@@ -17,6 +17,7 @@ import { EditAssetComponent } from './components/asset-list/edit-asset/edit-asse
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddIncidentComponent } from './components/incident/add-incident/add-incident.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AlertsComponent } from './components/alerts/alerts.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

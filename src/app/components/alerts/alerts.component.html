@@ -179,7 +179,7 @@
                                         data-placement="top" title="" data-original-title="sms"></i>
                                     <i class="fas fa-video clock-green cursor-pointer mr-2 f-16" data-toggle="tooltip"
                                         data-placement="top" title="" data-original-title="View video recording"></i>
-                                        <i class="fas fa-ellipsis-h clock-green cursor-pointer f-18"></i>
+                                    <i class="fas fa-ellipsis-h clock-green cursor-pointer f-18"></i>
                                 </td>
                             </ng-container>
 
@@ -202,9 +202,11 @@
                     <div>
                         <h5 class="title-head"> Alert Status</h5>
                     </div>
-                    <div>
+                    <!-- <div>
                         <img src="../../../assets/image/graph-4.PNG" alt="graph-3">
-                    </div>
+                    </div> -->
+                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"></canvas>
                 </div>
             </div>
             <div class="col-md-4">
@@ -213,7 +215,9 @@
                         <h5 class="title-head"> Severity</h5>
                     </div>
                     <div class=" mt-3">
-                        <img src="../../../assets/image/graph-5.PNG" alt="graph-3">
+                        <!-- <img src="../../../assets/image/graph-5.PNG" alt="graph-3"> -->
+                        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels"
+                            [chartType]="pieChartType"></canvas>
                     </div>
                 </div>
             </div>
@@ -223,7 +227,11 @@
                         <h5 class="title-head">Trend Graph</h5>
                     </div>
                     <div class="mt-3">
-                        <img src="../../../assets/image/graph-6.PNG" alt="graph-3" width="100%" height="500px">
+                        <!-- <img src="../../../assets/image/graph-6.PNG" alt="graph-3" width="100%" height="500px"> -->
+                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                        </canvas>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ChartDataSets } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
 
 export interface PeriodicElement {
   alertId: string;
@@ -27,6 +29,46 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
+
+  public doughnutChartLabels = ['Completed', 'Pending', 'Acknowledged', 'Onhold'];
+  public doughnutChartData = [15, 25, 60];
+  public doughnutChartType = 'doughnut';
+
+  public pieChartLabels = ['Critical', 'High', 'Medium', 'Low'];
+  public pieChartData = [40, 25, 20, 15];
+  public pieChartType = 'pie';
+
+  lineChartData: ChartDataSets[] = [
+    { data: [2, 8, 15, 20, 23, 18,20,22,25,28,32,38,40,45,55,60,2,50], label: 'Yesterday' },
+    { data: [22, 33, 44, 55, 66,2, 80, 85, 90, 92, 95, 80,90, 120, 125, 135,150], label: 'Today' },
+  ];
+
+  lineChartLabels: Label[] = ['0', '1', '3', '4', '5', '6','7', '8', '9', '10', '11', '12','13', '14', '15', '16', '17', '18'];
+
+  lineChartOptions = {
+    responsive: true,
+    scales : {
+      yAxes: [{
+          ticks: {
+          beginAtZero: true,
+          stepsize:20,
+            max : 200,
+          }
+      }]
+    }
+  };
+
+  lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: 'rgba(255,255,0,0.28)',
+    },
+  ];
+
+  lineChartLegend = true;
+  lineChartPlugins = [];
+  lineChartType = 'line';
+
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
   @ViewChild(MatSort) sort: MatSort;
