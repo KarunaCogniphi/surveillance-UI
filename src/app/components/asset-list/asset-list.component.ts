@@ -12,6 +12,8 @@ export interface PeriodicElement {
   Value: number;
   Priority: string;
   Location: string;
+  AssociatedAlerts: string;
+  AssociatedIncidents: string;
   Assigned: string;
   Type: string;
   Status: string;
@@ -19,9 +21,10 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  { ID: 'BM 2', Name: 'Branch 2', Category: 'Branch', Value: 66, Priority: 'High', Location: '1st line, TVM', Assigned: 'CAM 0002', Type: 'Fixed', Status: 'Active', Options: 'jj' },
-  { ID: 'BM 1', Name: 'Branch 1', Category: 'Branch', Value: 50, Priority: 'High', Location: '1st line, TVM', Assigned: 'CAM 0001', Type: 'Fixed', Status: 'Inactive', Options: 'jj' },
-  { ID: 'BM 3', Name: 'Branch 3', Category: 'Branch 4', Value: 33, Priority: 'Low', Location: '1st line, TVM', Assigned: 'CAM 0003', Type: 'Fixed', Status: 'Inactive', Options: 'jj' },
+  { ID: 'BM 2', Name: 'Branch 2', Category: 'Branch', Value: 66, Priority: 'Critical', Location: '1st line, TVM', AssociatedAlerts:'2', AssociatedIncidents:'3', Assigned: 'CAM 0002', Type: 'Fixed', Status: 'Active', Options: 'jj' },
+  { ID: 'BM 1', Name: 'Branch 1', Category: 'ATM', Value: 50, Priority: 'Critical', Location: '2nd line, TVM', AssociatedAlerts:'1', AssociatedIncidents:'4', Assigned: 'CAM 0001', Type: 'Fixed', Status: 'Inactive', Options: 'jj' },
+  { ID: 'BM 3', Name: 'Branch 3', Category: 'Apartments', Value: 33, Priority: 'Medium', Location: '3rd line, TVM', AssociatedAlerts:'2', AssociatedIncidents:'3', Assigned: 'CAM 0003', Type: 'Fixed', Status: 'Inactive', Options: 'jj' },
+  { ID: 'BM 4', Name: 'Branch 4', Category: 'Industry', Value: 19, Priority: 'Low', Location: '4th line, TVM', AssociatedAlerts:'4', AssociatedIncidents:'1', Assigned: 'CAM 0004', Type: 'Fixed', Status: 'Active', Options: 'jj' },
 ];
 
 @Component({
@@ -37,7 +40,7 @@ export class AssetListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['select', 'ID', 'Name', 'Category', 'Value', 'Priority', 'Location', 'Assigned', 'Type', 'Status', 'Options'];
+  displayedColumns: string[] = ['select', 'ID', 'Name', 'Category', 'Value', 'Priority', 'Location', 'AssociatedAlerts', 'AssociatedIncidents', 'Assigned', 'Type', 'Status', 'Options'];
   tabIndex: any;
   assetName: any;
   curRow: any;

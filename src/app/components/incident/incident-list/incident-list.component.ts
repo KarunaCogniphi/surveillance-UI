@@ -10,6 +10,7 @@ export interface PeriodicElement {
   AssetId: string;
   Priority: string;
   Severity: string;
+  AssociatedAlert: string;
   SlaBreach: string;
   Category: string;
   SubCategory: string;
@@ -21,10 +22,10 @@ export interface PeriodicElement {
   Action: string;
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  { Id: 'ID 1', Desc: 'Branch 1', AssetId: 'BBM 1', Priority: 'Critical', Severity: 'Critical', SlaBreach: 'No', Category: '-', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Karuna karan', Status: 'Close', Remark: 'sss', Action: 'jj' },
-  { Id: 'ID 2', Desc: 'Branch 2', AssetId: 'BBM 2', Priority: 'Medium', Severity: 'Medium', SlaBreach: 'Yes', Category: '-', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
-  { Id: 'ID 3', Desc: 'Branch 3', AssetId: 'BBM 3', Priority: 'Medium', Severity: 'High', SlaBreach: 'Yes', Category: '-', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
-  { Id: 'ID 4', Desc: 'Branch 4', AssetId: 'BBM 4', Priority: 'Low', Severity: 'Low', SlaBreach: 'No', Category: '-', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
+  { Id: 'ID 1', Desc: 'Unauthorized Access in Gate', AssetId: 'BBM 1', Priority: 'Critical', Severity: 'Critical', AssociatedAlert:'2', SlaBreach: 'No', Category: 'Security Breech', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Karuna karan', Status: 'Close', Remark: 'sss', Action: 'jj' },
+  { Id: 'ID 2', Desc: 'Back EntranceDoor broken', AssetId: 'BBM 2', Priority: 'Critical', Severity: 'Critical', AssociatedAlert:'1', SlaBreach: 'Yes', Category: 'Security Breech', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
+  { Id: 'ID 3', Desc: 'Hall Crowded Area', AssetId: 'BBM 3', Priority: 'Medium', Severity: 'High', AssociatedAlert:'0', SlaBreach: 'Yes', Category: 'Crowd Control', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
+  { Id: 'ID 4', Desc: 'Branch 4', AssetId: 'BBM 4', Priority: 'Low', Severity: 'Low', AssociatedAlert:'0', SlaBreach: 'No', Category: 'Others', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
 ];
 
 @Component({
@@ -39,7 +40,7 @@ export class IncidentListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['select', 'Id', 'Desc', 'AssetId', 'Priority', 'Severity', 'SlaBreach', 'Category', 'SubCategory', 'CreationTime', 'AssignedTo', 'Status', 'Remark', 'Action'];
+  displayedColumns: string[] = ['select', 'Id', 'Desc', 'AssetId', 'Priority', 'Severity', 'AssociatedAlert', 'SlaBreach', 'Category', 'SubCategory', 'CreationTime', 'AssignedTo', 'Status', 'Remark', 'Action'];
   tabIndex: any;
   curRow: any;
   incidentName: any;
