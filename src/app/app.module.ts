@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainHeaderComponent } from './components/shared/main-header/main-header.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
-import { AssetListComponent } from './components/asset-list/asset-list.component';
+import { AssetListComponent, DialogContentExampleDialog } from './components/asset-list/asset-list.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { MaterialModule } from './components/shared/material-module';
 import { IncidentComponent } from './components/incident/incident.component';
@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddIncidentComponent } from './components/incident/add-incident/add-incident.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ChartsModule } from 'ng2-charts';
+import { FileUploadComponent } from './components/shared/file-upload/file-upload.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ChartsModule } from 'ng2-charts';
     IncidentListComponent,
     EditAssetComponent,
     AddIncidentComponent,
-    AlertsComponent
+    AlertsComponent,
+    FileUploadComponent,
+    DialogContentExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { ChartsModule } from 'ng2-charts';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    GooglePlaceModule
   ],
   providers: [],
   bootstrap: [AppComponent]

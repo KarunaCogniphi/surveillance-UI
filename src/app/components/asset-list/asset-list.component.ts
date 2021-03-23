@@ -1,5 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -41,7 +42,7 @@ export class AssetListComponent implements OnInit {
   assetName: any;
   curRow: any;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
 
   ngOnInit(): void {
@@ -88,5 +89,27 @@ export class AssetListComponent implements OnInit {
     this.assetName = assetName;
     this.curRow = curRow;
     // console.log(this.assetName, curRow);
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+    
+  }
+}
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  template: `<create-asset (child)="linkToggler($event)"></create-asset>`
+})
+export class DialogContentExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogContentExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    linkToggler(event) {
+    this.dialogRef.close();
   }
 }

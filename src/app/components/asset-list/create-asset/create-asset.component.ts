@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./create-asset.component.css']
 })
 export class CreateAssetComponent implements OnInit {
+
+  @Output() public child = new EventEmitter<String>();
 
   categoryArray = [
     { id: 0, name: 'Select Category' },
@@ -30,12 +32,12 @@ export class CreateAssetComponent implements OnInit {
     { id: 1, name: 'Active' },
     { id: 2, name: 'Inactive' },
   ];
+  imageUploadObj = { label: 'Upload Assets Image', viewText: 'Upload Image' };
+  fileUploadObj = { label: 'Upload Document', viewText: 'Upload Document' };
+  
   createAssetForm: FormGroup;
-  fileToUpload: any;
-  imageUrl: any;
-  fileName: any;
   startDate = new Date(1990, 0, 1);
-  imageFiles = [];
+
 
   constructor(private formbuilder: FormBuilder) { }
 
@@ -56,30 +58,8 @@ export class CreateAssetComponent implements OnInit {
   createAsset(formData) {
     console.log('formData', formData);
   }
-  
-  handleFileInput(file: FileList) {
-    this.fileToUpload = file.item(0);
-    if (!!this.fileToUpload) {
-      this.fileName = this.fileToUpload.name;
-    }
-    //Show image preview
-    let reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.imageUrl = event.target.result;
-    }
-    reader.readAsDataURL(this.fileToUpload);
-  }
-  handleFileInput2(event) {
-    const files = event.target.files;
-    if(!!files) {
-      this.imageFiles.push(files[0]);
-    }
-  }
 
-  removeImage(image) {
-    console.log(this.imageFiles.length);
-    const indx = this.imageFiles.indexOf(image);
-    this.imageFiles.splice(indx,1);
-    // console.log(this.imageFiles.length);
+  onNoClick() {
+    this.child.emit('close');
   }
 }

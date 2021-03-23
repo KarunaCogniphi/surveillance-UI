@@ -88,12 +88,12 @@ border-collapse: collapse;
 tr:hover {
 background-color: #E0E0E0;
 }
-tr:first-child {
+/* tr:first-child {
 background-color: #E0E0E0;
 -webkit-box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
 -moz-box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
 box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-}
+} */
 th {
 background-color: #f6f6fa;
 padding: 12px 15px !important;
@@ -299,7 +299,3 @@ box-sizing: content-box;
 }
 /*checkbox-green*/
 
-.header-font {
-  font-size: 14px;
-    color: black;
-}

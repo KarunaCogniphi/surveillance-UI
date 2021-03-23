@@ -1,10 +1,10 @@
 <form class="assetForm" [formGroup]="createAssetForm">
-   <div class="modal" id="myModal">
-      <div class="modal-dialog" style="max-width: 600px">
-         <div class="modal-content">
+   <!-- <div class="modal" id="myModal"> -->
+      <div style="max-width: 600px; overflow: auto;">
+         <!-- <div class="modal-content"> -->
             <div class="modal-header">
                <h4 class="modal-title">Add Asset</h4>
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <button type="button" class="close" (click)="onNoClick()">&times;</button>
             </div>
             <div class="modal-body">
                <div>
@@ -51,47 +51,14 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label class="f-w-600 title-head-ash">Location</label>
-                           <input type="text" class="form-control" id="name4" formControlName="location">
+                           <!-- <input type="text" class="form-control" id="name4" formControlName="location"> -->
+                           <input type="text" class="form-control" id="name4"ngx-google-places-autocomplete #placesRef="ngx-places" formControlName="location"/>
                         </div>
                      </div>
                   </div>
-
-                  <div class="row">
-                     <div class="col-md-6">
-                        <label class="f-w-600 title-head-ash">Upload Assets Image</label>
-                        <div class="file btn btn-lg upload-btn-drop">
-                           <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label
-                              class="f-w-600 title-head-ash f-12">Upload Image</label>
-                           <input type="file" class="upload-input-drop" #Image
-                              (change)="handleFileInput2($event)" />
-                           <!-- <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)" /> -->
-                           <!-- <input #Image type="file" (change)="handleFileInput($event.target.files)"/> -->
-
-                        </div>
-                        <!-- <li *ngFor="let image of imageFiles"><span class="mt-2" >{{image.name}}</span></li> -->
-                        
-                        <ul>
-                           <li *ngFor="let image of imageFiles"><span>{{image.name}}</span><span class="close" style="display: block;" (click)="removeImage(image)" >&times;</span></li>
-                           <!-- <li>Calvin<span class="close">&times;</span></li> -->
-                        </ul>
-                        <div *ngIf="imageUrl" class="border border-primary mt-3 rounded">
-                           <img [src]="imageUrl" class="image img-fluid img-thumbnail">
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="mt-1-7">
-                           <button type="button" class="btn btn-small" (click)="file.click()">
-                              <i class="fas fa-plus f-16"></i>
-                           </button>
-                           <!-- <input type="button"  value="Grab file"> -->
-                           <input type="file" id="my_file" #file (change)="handleFileInput2($event)">
-                        </div>
-                     </div>
-                     <!-- <div class="avatar-preview">
-                        <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
-                        </div>
-                     </div> -->
-                  </div>
+                  <!-- upload image start -->
+                  <file-upload [fileControl]="imageUploadObj" ></file-upload>
+                  <!-- upload image start -->
                   <div class="row mt-3">
                      <div class="col-md-4">
                         <div class="form-group">
@@ -106,7 +73,7 @@
                               <div class="input-group-prepend input-group-addon ">
                                  <div class="input-group-text bg-white pad-btn-radius-left">
                                     <!-- <mat-datepicker-toggle class="far" matSuffix [for]="picker" style="z-index: 10;"> -->
-                                       <i class="far fa-calendar-alt f-20"></i>
+                                    <i class="far fa-calendar-alt f-20"></i>
                                     <!-- </mat-datepicker-toggle> -->
                                  </div>
                               </div>
@@ -163,30 +130,19 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row mt-1">
-                     <div class="col-md-6">
-                        <div class="file btn btn-lg upload-btn-drop">
-                           <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label
-                              class="f-w-600 title-head-ash f-12">Upload Document</label>
-                           <input type="file" class="upload-input-drop" name="file" />
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div>
-                           <button type="button" class="btn btn-small" data-toggle="modal" data-target="#myModal">
-                              <i class="fas fa-plus f-16"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
+                  <!-- <div class="row mt-1"> -->
+                     <!-- upload file start -->
+                  <file-upload [fileControl]="fileUploadObj" ></file-upload>
+                  <!-- upload file start -->
+                  <!-- </div> -->
                </div>
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal"
                   (click)="createAsset(createAssetForm.value)">Create</button>
-               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" data-dismiss="modal">Cancel</span>
+               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" (click)="onNoClick()">Cancel</span>
             </div>
-         </div>
+         <!-- </div> -->
       </div>
-   </div>
+   <!-- </div> -->
 </form>

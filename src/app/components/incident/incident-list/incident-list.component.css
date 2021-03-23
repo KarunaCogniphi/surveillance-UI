@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-.has-search .form-control {
+/* .has-search .form-control {
     padding-left: 2.375rem;
   }
   
@@ -16,11 +16,7 @@
     text-align: center;
     pointer-events: none;
     color: #aaa;
-  }
-  .header-font {
-    font-size: 20px;
-      color: black;
-  }
+  } */
 
   table{
     width: 100%;
@@ -153,4 +149,22 @@ background: #f3bc06;
 
 .clock-green{
   color: #51c8ac;
+}
+
+.form-border-none{
+  border: none;
+}
+
+.search-ash{
+  color: #898991;
+}
+
+.pos-b-3{
+  position: relative;
+  bottom: 30px;
+}
+
+.pos-ab-10{
+  position: absolute;
+  top:10px;
 }

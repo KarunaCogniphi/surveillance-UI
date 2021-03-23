@@ -5,3 +5,76 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.title-head-ash{
+    color: #8d8e91;
+  }
+
+  .upload-input-drop {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.upload-btn-drop {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #ddd!important;
+    border-radius: 4px !important;
+    padding: .2em 2em !important;
+}
+
+.cloud-upload{
+    position: absolute;
+      left: 10px;
+      font-size: 18px;
+      top: 8px;
+  }
+
+  .btn-small{
+    border-width: 0;
+    line-height: 1.538;
+    padding: 9px 15px !important;
+    border-radius: 0;
+    transition: none;
+    min-height: 40px !important;
+    background: #131432 !important;
+    color: #fff !important;
+    border-radius: 4px !important;
+}
+
+.header-font {
+  font-size: 14px;
+    /* color: #07f3a3; */
+    color: rgb(37, 124, 224);
+}
+
+th {
+  background-color: #f6f6fa;
+}
+
+.cdk-global-overlay-wrapper {
+  pointer-events: auto;
+  display: block;
+  position: relative;
+  overflow: auto;
+  text-align: center;
+}
+
+/* .cdk-global-overlay-wrapper::before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  white-space: nowrap;
+} */
+
+.cdk-overlay-pane {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  white-space: normal;
+}

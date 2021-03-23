@@ -9,148 +9,158 @@
          </div>
       </div>
    </div>
+   <div class="row mt-3">
+      <div class="col-md-12">
+         <div class="card-box bg-white display-inherit hei-100">
+            <div class="mb-3 pl-3 pr-3 row">
+               <div class="col-md-6 mt-2">
+                  <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span><input type="text"
+                     class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category" id="search"
+                     (keyup)="applyFilter($event)">
+               </div>
+               <div class="col-md-6 mt-3">
+                  <div class="text-right mr-2">
+                     <div class="d-inline-block mr-3">
+                        <span class="cursor-pointer">
+                           <i class="fas fa-sort icon-blue"></i> <span class="text-darkcolor f-14 ">Sort</span>
+                        </span>
+                     </div>
+                     <div class="dropdown d-inline-block mr-3">
+                        <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
+                           <i class="fas fa-circle-notch icon-blue"></i> <span
+                              class="text-darkcolor f-14 ">Status</span>
+                        </span>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#">Link 1</a>
+                           <a class="dropdown-item" href="#">Link 2</a>
+                           <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                     </div>
+                     <div class="dropdown d-inline-block mr-3">
+                        <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
+                           <i class="fas fa-filter icon-blue"></i> <span class="text-darkcolor f-14 ">Filter</span>
+                        </span>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#">Link 1</a>
+                           <a class="dropdown-item" href="#">Link 2</a>
+                           <a class="dropdown-item" href="#">Link 3</a>
+                        </div>
+                     </div>
+                     <div class="d-inline-block mr-3">
+                        <span class="cursor-pointer">
+                           <i class="fas fa-columns icon-blue"></i> <span class="text-darkcolor f-14 ">Column</span>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <section>
+               <div class="table-responsive">
+                  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-   <div class="mb-3 pl-3 pr-3 row">
-      <!-- <div class="form-group has-search">
-          <span><i class="form-control-feedback fas fa-search f-16 search-ash"></i></span>
-          <input type="text" class="form-control" placeholder="Search">
-        </div> -->
-      <div class="col-md-6 mt-2">
-         <!-- <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span> -->
-         <input type="text" class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category"
-            id="search" (keyup)="applyFilter($event)">
-      </div>
-      <div class="col-md-6 mt-3">
-         <div class="text-right mr-2">
-            <div class="d-inline-block mr-3">
-               <span class="cursor-pointer">
-                  <i class="fas fa-sort icon-blue"></i> <span class="text-darkcolor f-14 ">Sort</span>
-               </span>
-            </div>
-            <div class="dropdown d-inline-block mr-3">
-               <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
-                  <i class="fas fa-circle-notch icon-blue"></i> <span class="text-darkcolor f-14 ">Status</span>
-               </span>
-               <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
+                     <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                           <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                           </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                           <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                              [aria-label]="checkboxLabel(row)">
+                           </mat-checkbox>
+                        </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="Id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> ID </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+                     </ng-container>
+                     <ng-container matColumnDef="Desc">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Desc </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Desc}} </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="AssetId">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Asset Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.AssetId}} </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="Priority">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Priority </th>
+                        <td mat-cell *matCellDef="let element"> <span [ngClass]="priorityStyle(element.Priority)">
+                              {{element.Priority}} </span></td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="Severity">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Severity </th>
+                        <td mat-cell *matCellDef="let element">
+                           <span [ngClass]="severityStyle(element.Severity)">{{element.Severity}}</span>
+                        </td>
+                     </ng-container>
+                     <ng-container matColumnDef="SlaBreach">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> SLA Breach </th>
+                        <td mat-cell *matCellDef="let element"> <span [ngClass]="slaBreachStyle(element.SlaBreach)">
+                              {{element.SlaBreach}}</span> </td>
+                     </ng-container>
+                     <ng-container matColumnDef="AssignedTo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Assigned To </th>
+                        <td mat-cell *matCellDef="let element"> {{element.AssignedTo}} </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="Category">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Category </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Category}} </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="SubCategory">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Sub Category </th>
+                        <td mat-cell *matCellDef="let element"> {{element.SubCategory}} </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="CreationTime">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Creation Time </th>
+                        <td mat-cell *matCellDef="let element">
+                           {{element.CreationDate}} <i class="fas fa-clock clock-green"></i> {{element.CreationTime}}
+                        </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="Status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Status </th>
+                        <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+                     </ng-container>
+                     <ng-container matColumnDef="Remark">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Remark </th>
+                        <td mat-cell *matCellDef="let element">
+                           <div class="form-group m-0">
+                              <input type="text" class="form-control">
+                           </div>
+                        </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="Action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
+                        <td mat-cell *matCellDef="let element">
+                           <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
+                              data-placement="top" title="" data-original-title="image"></i>
+                           <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
+                              data-placement="top" title="" data-original-title="link"></i>
+                           <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
+                              title="" data-original-title="Edit" (click)="onTabClick('add-incident')"
+                              data-toggle="modal" data-target="#myModal"></i>
+                        </td>
+                     </ng-container>
+
+                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                     </tr>
+                  </table>
+                  <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
                </div>
-            </div>
-            <div class="dropdown d-inline-block mr-3">
-               <span class="dropdown-toggle cursor-pointer" data-toggle="dropdown">
-                  <i class="fas fa-filter icon-blue"></i> <span class="text-darkcolor f-14 ">Filter</span>
-               </span>
-               <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
-               </div>
-            </div>
-            <div class="d-inline-block mr-3">
-               <span class="cursor-pointer">
-                  <i class="fas fa-columns icon-blue"></i> <span class="text-darkcolor f-14 ">Column</span>
-               </span>
-            </div>
+            </section>
          </div>
       </div>
-   </div>
-   <div class="table-responsive">
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-         <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef>
-               <mat-checkbox (change)="$event ? masterToggle() : null"
-                  [checked]="selection.hasValue() && isAllSelected()"
-                  [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-               </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let row">
-               <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                  [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-               </mat-checkbox>
-            </td>
-         </ng-container>
-
-         <ng-container matColumnDef="Id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> ID </th>
-            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
-         </ng-container>
-         <ng-container matColumnDef="Desc">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Desc </th>
-            <td mat-cell *matCellDef="let element"> {{element.Desc}} </td>
-         </ng-container>
-
-         <ng-container matColumnDef="AssetId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Asset Id </th>
-            <td mat-cell *matCellDef="let element"> {{element.AssetId}} </td>
-         </ng-container>
-
-         <ng-container matColumnDef="Priority">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Priority </th>
-            <td mat-cell *matCellDef="let element"> <span [ngClass]="priorityStyle(element.Priority)"> {{element.Priority}} </span></td>
-         </ng-container>
-
-         <ng-container matColumnDef="Severity">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Severity </th>
-            <td mat-cell *matCellDef="let element">
-               <span [ngClass]="severityStyle(element.Severity)">{{element.Severity}}</span>
-            </td>
-         </ng-container>
-         <ng-container matColumnDef="SlaBreach">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> SLA Breach </th>
-            <td mat-cell *matCellDef="let element"> <span [ngClass]="slaBreachStyle(element.SlaBreach)"> {{element.SlaBreach}}</span> </td>
-         </ng-container>
-         <ng-container matColumnDef="AssignedTo">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Assigned To </th>
-            <td mat-cell *matCellDef="let element"> {{element.AssignedTo}} </td>
-         </ng-container>
-
-         <ng-container matColumnDef="Category">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Category </th>
-            <td mat-cell *matCellDef="let element"> {{element.Category}} </td>
-         </ng-container>
-
-         <ng-container matColumnDef="SubCategory">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Sub Category </th>
-            <td mat-cell *matCellDef="let element"> {{element.SubCategory}} </td>
-         </ng-container>
-
-         <ng-container matColumnDef="CreationTime">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Creation Time </th>
-            <td mat-cell *matCellDef="let element">
-               {{element.CreationDate}} <i class="fas fa-clock clock-green"></i> {{element.CreationTime}}
-            </td>
-         </ng-container>
-
-         <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Status </th>
-            <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
-         </ng-container>
-         <ng-container matColumnDef="Remark">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Remark </th>
-            <td mat-cell *matCellDef="let element"> <div class="form-group m-0">
-               <input type="text" class="form-control">
-            </div> </td>
-         </ng-container>
-
-         <ng-container matColumnDef="Action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
-            <td mat-cell *matCellDef="let element">
-               <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip" data-placement="top"
-                  title="" data-original-title="image"></i>
-               <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip" data-placement="top"
-                  title="" data-original-title="link"></i>
-               <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top" title=""
-                  data-original-title="Edit" (click)="onTabClick('add-incident')" data-toggle="modal" data-target="#myModal"></i>
-            </td>
-         </ng-container>
-
-         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
-         </tr>
-      </table>
-      <mat-paginator [pageSizeOptions]="[2, 10, 25, 100]"></mat-paginator>
    </div>
 </div>
 
