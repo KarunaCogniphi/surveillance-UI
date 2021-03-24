@@ -146,12 +146,12 @@ td:last-child {
     border-radius: 20px;
 }
 .badge-low{
-    font-size: 13px !important;
-    background: #fcffa5;
-    color: #333 !important;
-    padding: 0.35em 0.4em !important;
-    width: 100%;
-    border-radius: 20px;
+  font-size: 13px !important;
+  background: #fcffa5;
+  color: #333 !important;
+  padding: 0.35em 0.4em !important;
+  width: 100%;
+  border-radius: 20px;
 }
 
 .text-red{
