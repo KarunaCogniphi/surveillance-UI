@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { SharedServiceService } from '../../shared/shared-service.service';
 
 @Component({
   selector: 'create-asset',
@@ -9,6 +11,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CreateAssetComponent implements OnInit {
 
   @Output() public child = new EventEmitter<String>();
+  @Output() public formData = new EventEmitter<String>();
+  receivedData:any;
 
   categoryArray = [
     { id: 0, name: 'Select Category' },
@@ -38,13 +42,21 @@ export class CreateAssetComponent implements OnInit {
   createAssetForm: FormGroup;
   startDate = new Date(1990, 0, 1);
 
+  @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+  curAddress: any;
+    
+  public handleAddressChange(address: any) {
+    console.log(address.formatted_address);
+    this.curAddress = address.formatted_address;
+  // Do some stuff
+}
 
-  constructor(private formbuilder: FormBuilder) { }
+  constructor(private formbuilder: FormBuilder, private sharedService:SharedServiceService) { }
 
   ngOnInit(): void {
     this.createAssetForm = this.formbuilder.group({
       id: [],
-      name: [''],
+      name: ['', Validators.required],
       category: [],
       value: [''],
       priority: [],
@@ -56,7 +68,11 @@ export class CreateAssetComponent implements OnInit {
   }
 
   createAsset(formData) {
-    console.log('formData', formData);
+    formData.location = this.curAddress;
+    if(formData) {
+      this.sharedService.assetValue.next(formData);
+      this.child.emit('close');
+    }
   }
 
   onNoClick() {

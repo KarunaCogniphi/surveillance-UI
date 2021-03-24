@@ -4,24 +4,24 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { SharedServiceService } from '../shared/shared-service.service';
 
 export interface PeriodicElement {
-  ID: string;
-  Name: string;
-  Category: string;
-  Value: number;
-  Priority: string;
-  Location: string;
-  Assigned: string;
-  Type: string;
-  Status: string;
-  Options: string;
+  id: string;
+  name: string;
+  category: string;
+  value: number;
+  priority: string;
+  location: string;
+  assignedTo: string;
+  type: string;
+  status: string;
+  options: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
-  { ID: 'BM 2', Name: 'Branch 2', Category: 'Branch', Value: 66, Priority: 'High', Location: '1st line, TVM', Assigned: 'CAM 0002', Type: 'Fixed', Status: 'Active', Options: 'jj' },
-  { ID: 'BM 1', Name: 'Branch 1', Category: 'Branch', Value: 50, Priority: 'High', Location: '1st line, TVM', Assigned: 'CAM 0001', Type: 'Fixed', Status: 'Inactive', Options: 'jj' },
-  { ID: 'BM 3', Name: 'Branch 3', Category: 'Branch 4', Value: 33, Priority: 'Low', Location: '1st line, TVM', Assigned: 'CAM 0003', Type: 'Fixed', Status: 'Inactive', Options: 'jj' },
+  { id: 'BM 2', name: 'Branch 2', category: 'Branch', value: 66, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+  { id: 'BM 1', name: 'Branch 1', category: 'Branch', value: 50, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 3', name: 'Branch 3', category: 'Branch 4', value: 33, priority: 'Low', location: '1st line, TVM', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
 ];
 
 @Component({
@@ -32,20 +32,44 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class AssetListComponent implements OnInit {
 
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  // dataSource = new MatTableDataSource<any>();
+  assetListData = [
+    { id: 'BM 2', name: 'Branch 2', category: 'Branch', value: 66, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+    { id: 'BM 1', name: 'Branch 1', category: 'Branch', value: 50, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+    { id: 'BM 3', name: 'Branch 3', category: 'Branch 4', value: 33, priority: 'Low', location: '1st line, TVM', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  ];
+  dataSource = new MatTableDataSource<any>();
+  selection = new SelectionModel<any>(true, []);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['select', 'ID', 'Name', 'Category', 'Value', 'Priority', 'Location', 'Assigned', 'Type', 'Status', 'Options'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'category', 'value', 'priority', 'location', 'assignedTo', 'type', 'status', 'options'];
   tabIndex: any;
   assetName: any;
   curRow: any;
+  newRowdata: {};
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private sharedService:SharedServiceService) { }
 
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.assetListData);
+    this.sharedService.assetValue$.subscribe({
+      next: (data:any) => {
+        if(!!data && Object.keys(data).length>0)
+        {
+          // this.newRowdata = data;
+          // this.dataSource = new MatTableDataSource([]);
+          this.assetListData.unshift(data);
+          this.dataSource = new MatTableDataSource(this.assetListData);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+          console.log('hh',this.assetListData);
+        }
+      },
+      error: err => {},
+      complete: () => {}
+    })
   }
 
   ngAfterViewInit() {
