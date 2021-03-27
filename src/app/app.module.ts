@@ -23,6 +23,7 @@ import { FileUploadComponent } from './components/shared/file-upload/file-upload
 import { ImageViewComponent } from './components/shared/image-view/image-view.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AngularImageViewerModule } from "angular-x-image-viewer";
+import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AngularImageViewerModule } from "angular-x-image-viewer";
     FileUploadComponent,
     DialogContentExampleDialog,
     DialogContentEditDialog,
-    ImageViewComponent
+    ImageViewComponent,
+    IncidentChatViewComponent
   ],
   imports: [
     BrowserModule,

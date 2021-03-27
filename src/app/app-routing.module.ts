@@ -7,6 +7,7 @@ import { IncidentComponent } from './components/incident/incident.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { SlaComponent } from './components/sla/sla.component';
+import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'sla', component: SlaComponent },
   { path: 'incident', component: IncidentComponent },
   { path: 'incident-list', component: IncidentListComponent },
+  { path: 'incident-chat-view', component: IncidentChatViewComponent },
   { path: 'alerts', component: AlertsComponent },
   { path: '**', component: NotFoundComponent },
 ];
