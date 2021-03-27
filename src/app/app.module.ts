@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainHeaderComponent } from './components/shared/main-header/main-header.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
-import { AssetListComponent, DialogContentExampleDialog } from './components/asset-list/asset-list.component';
+import { AssetListComponent, DialogContentExampleDialog, DialogContentEditDialog } from './components/asset-list/asset-list.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { MaterialModule } from './components/shared/material-module';
 import { IncidentComponent } from './components/incident/incident.component';
@@ -16,10 +16,13 @@ import { IncidentListComponent } from './components/incident/incident-list/incid
 import { EditAssetComponent } from './components/asset-list/edit-asset/edit-asset.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddIncidentComponent } from './components/incident/add-incident/add-incident.component';
+import { EditIncidentComponent } from './components/incident/edit-incident/edit-incident.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ChartsModule } from 'ng2-charts';
 import { FileUploadComponent } from './components/shared/file-upload/file-upload.component';
+import { ImageViewComponent } from './components/shared/image-view/image-view.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { AngularImageViewerModule } from "angular-x-image-viewer";
 
 @NgModule({
   declarations: [
@@ -34,9 +37,12 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     IncidentListComponent,
     EditAssetComponent,
     AddIncidentComponent,
+    EditIncidentComponent,
     AlertsComponent,
     FileUploadComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    DialogContentEditDialog,
+    ImageViewComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     MaterialModule,
     ReactiveFormsModule,
     ChartsModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    AngularImageViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

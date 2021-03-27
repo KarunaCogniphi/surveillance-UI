@@ -1,10 +1,10 @@
-<form class="assetForm" [formGroup]="assetForm">
-   <div class="modal" id="myModal2">
-      <div class="modal-dialog" style="max-width: 600px">
-         <div class="modal-content">
+<form class="assetForm" [formGroup]="editAssetForm">
+   <!-- <div class="modal" id="myModal"> -->
+      <div style="max-width: 600px; overflow: auto;">
+         <!-- <div class="modal-content"> -->
             <div class="modal-header">
-               <h4 class="modal-title">Edit Asset</h4>
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title"><b style="font-size:20px;">Edit Asset</b></h4>
+               <button type="button" class="close" (click)="onNoClick()">&times;</button>
             </div>
             <div class="modal-body">
                <div>
@@ -12,32 +12,24 @@
                      <div class="col-md-3">
                         <div class="form-group">
                            <label class="f-w-600 title-head-ash">ID</label>
-                           <input type="text" class="form-control" disabled id="name1" formControlName="id">
+                           <input type="text" class="form-control" disabled id="name1"
+                              formControlName="id">
                         </div>
                      </div>
                      <div class="col-md-9">
                         <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Asset Name</label>
+                           <label class="f-w-600 title-head-ash">Asset Name*</label>
                            <input type="text" class="form-control" id="name2" formControlName="name">
                         </div>
                      </div>
                   </div>
                   <div class="row">
-                     <!-- <div class="col-md-6">
-                        <div class="form-group">
-                           <label for="sel1" class="f-w-600 title-head-ash">Asset Category</label>
-                           <select class="form-control" id="sel1" formControlName="category">
-                              <option>Select</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                           </select>
-                        </div>
-                     </div> -->
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Asset Category</label>
-                           <input type="text" class="form-control" id="name3" formControlName="category">
+                           <label for="sel3" class="f-w-600 title-head-ash">Asset Category*</label>
+                           <select class="form-control" id="sel3" formControlName="category">
+                              <option *ngFor="let category of categoryArray">{{category.name}}</option>
+                           </select>
                         </div>
                      </div>
                      <div class="col-md-6">
@@ -48,47 +40,24 @@
                      </div>
                   </div>
                   <div class="row">
-                     <!-- <div class="col-md-6">
+                     <div class="col-md-6">
                         <div class="form-group">
-                           <label for="sel4" class="f-w-600 title-head-ash">Priority</label>
+                           <label for="sel4" class="f-w-600 title-head-ash">Priority*</label>
                            <select class="form-control" id="sel4" formControlName="priority">
-                              <option>Select</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
+                              <option *ngFor="let priority of priorityArray">{{priority.name}}</option>
                            </select>
                         </div>
-                     </div> -->
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Priority</label>
-                           <input type="text" class="form-control" id="name3" formControlName="priority">
-                        </div>
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Location</label>
-                           <input type="text" class="form-control" id="name4">
+                           <label class="f-w-600 title-head-ash">Location*</label>
+                           <input type="text" class="form-control" id="name4" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="location"/>
                         </div>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <label class="f-w-600 title-head-ash">Upload Assets Image</label>
-                        <div class="file btn btn-lg upload-btn-drop">
-                           <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label
-                              class="f-w-600 title-head-ash f-12">Upload Image</label>
-                           <input type="file" class="upload-input-drop" name="file" />
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="mt-1-7">
-                           <button type="button" class="btn btn-small" data-toggle="modal" data-target="#myModal2">
-                              <i class="fas fa-plus f-16"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
+                  <!-- upload image start -->
+                  <file-upload [fileControl]="imageUploadObj" ></file-upload>
+                  <!-- upload image start -->
                   <div class="row mt-3">
                      <div class="col-md-4">
                         <div class="form-group">
@@ -101,12 +70,23 @@
                            <label class="f-w-600 title-head-ash">From Date</label>
                            <div class="input-group date datetimepicker">
                               <div class="input-group-prepend input-group-addon ">
-                                 <div class="input-group-text bg-white pad-btn-radius-left"><i
-                                       class="far fa-calendar-alt f-20"></i></div>
+                                 <div class="input-group-text bg-white pad-btn-radius-left">
+                                    <!-- <mat-datepicker-toggle class="far" matSuffix [for]="picker" style="z-index: 10;"> -->
+                                    <i class="far fa-calendar-alt f-20"></i>
+                                    <!-- </mat-datepicker-toggle> -->
+                                 </div>
                               </div>
-                              <input type='text' class="form-control border-radius-4" />
+                              <input type='text' class="form-control border-radius-4" [matDatepicker]="picker" />
+                              <!-- <mat-datepicker-toggle matSuffix [for]="picker" style="z-index: 10;"></mat-datepicker-toggle> -->
+                              <mat-datepicker #picker startView="year" [startAt]="startDate" style="z-index: 10;">
+                              </mat-datepicker>
                            </div>
                         </div>
+                        <!-- <mat-form-field appearance="fill" >
+                           <mat-label>Choose a date</mat-label>
+                           <input matInput [matDatepicker]="picker">
+                           
+                         </mat-form-field> -->
                      </div>
                      <div class="col-md-4">
                         <div class="form-group m-0">
@@ -124,32 +104,18 @@
                   <div class="row">
                      <div class="col-md-4">
                         <div class="form-group">
-                           <!-- <label for="sel2" class="f-w-600 title-head-ash">Type</label>
-                           <select class="form-control" id="sel2" formControlName="type">
-                              <option>Select</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                           </select> -->
-                           <div class="form-group">
-                              <label class="f-w-600 title-head-ash">Type</label>
-                              <input type="text" class="form-control" id="name3" formControlName="type">
-                           </div>
+                           <label for="sel1" class="f-w-600 title-head-ash">Type*</label>
+                           <select class="form-control" id="sel1" formControlName="type">
+                              <option *ngFor="let type of typeArray">{{type.name}}</option>
+                           </select>
                         </div>
                      </div>
                      <div class="col-md-4">
                         <div class="form-group">
-                           <!-- <label for="sel3" class="f-w-600 title-head-ash">Status</label>
-                           <select class="form-control" id="sel3" formControlName="status">
-                              <option>Select</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                           </select> -->
-                           <div class="form-group">
-                              <label class="f-w-600 title-head-ash">status</label>
-                              <input type="text" class="form-control" id="name3" formControlName="status">
-                           </div>
+                           <label for="sel2" class="f-w-600 title-head-ash">Status*</label>
+                           <select class="form-control" id="sel2" formControlName="status">
+                              <option *ngFor="let status of statusArray">{{status.name}}</option>
+                           </select>
                         </div>
                      </div>
                      <div class="col-md-4">
@@ -163,29 +129,19 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row mt-1">
-                     <div class="col-md-6">
-                        <div class="file btn btn-lg upload-btn-drop">
-                           <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label
-                              class="f-w-600 title-head-ash f-12">Upload Image</label>
-                           <input type="file" class="upload-input-drop" name="file" />
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div>
-                           <button type="button" class="btn btn-small" data-toggle="modal" data-target="#myModal2">
-                              <i class="fas fa-plus f-16"></i>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
+                  <!-- <div class="row mt-1"> -->
+                     <!-- upload file start -->
+                  <file-upload [fileControl]="fileUploadObj" ></file-upload>
+                  <!-- upload file start -->
+                  <!-- </div> -->
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-bg-darkblue mr-3" data-dismiss="modal">Create</button>
-               <a href="#"> <span class="mr-3 text-datkgreen f-w-600 cursor-pointer">Cancel</span> </a>
+               <button type="button" class="btn btn-bg-darkblue mr-3" [disabled]="!editAssetForm.valid"
+                  (click)="editAsset(editAssetForm.value)">edit</button>
+               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" (click)="onNoClick()">Cancel</span>
             </div>
-         </div>
+         <!-- </div> -->
       </div>
-   </div>
+   <!-- </div> -->
 </form>

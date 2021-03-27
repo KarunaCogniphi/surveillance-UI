@@ -73,70 +73,70 @@
                         </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="Id">
+                     <ng-container matColumnDef="id">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> ID </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                      </ng-container>
-                     <ng-container matColumnDef="Desc">
+                     <ng-container matColumnDef="desc">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Description </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Desc}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="AssetId">
+                     <ng-container matColumnDef="assetId">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Asset Id </th>
-                        <td mat-cell *matCellDef="let element"> {{element.AssetId}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.assetId}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="Priority">
+                     <ng-container matColumnDef="priority">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Priority </th>
-                        <td mat-cell *matCellDef="let element"> <span [ngClass]="priorityStyle(element.Priority)">
-                              {{element.Priority}} </span></td>
+                        <td mat-cell *matCellDef="let element"> <span [ngClass]="priorityStyle(element.priority)">
+                              {{element.priority}} </span></td>
                      </ng-container>
 
-                     <ng-container matColumnDef="Severity">
+                     <ng-container matColumnDef="severity">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Severity </th>
                         <td mat-cell *matCellDef="let element">
-                           <span [ngClass]="severityStyle(element.Severity)">{{element.Severity}}</span>
+                           <span [ngClass]="severityStyle(element.severity)">{{element.severity}}</span>
                         </td>
                      </ng-container>
 
-                      <ng-container matColumnDef="AssociatedAlert">
+                      <ng-container matColumnDef="associatedAlert">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Associated Alert </th>
-                        <td mat-cell *matCellDef="let element"> {{element.AssociatedAlert}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.associatedAlert}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="SlaBreach">
+                     <ng-container matColumnDef="slaBreach">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> SLA Breach </th>
-                        <td mat-cell *matCellDef="let element"> <span [ngClass]="slaBreachStyle(element.SlaBreach)">
-                              {{element.SlaBreach}}</span> </td>
+                        <td mat-cell *matCellDef="let element"> <span [ngClass]="slaBreachStyle(element.slaBreach)">
+                              {{element.slaBreach}}</span> </td>
                      </ng-container>
-                     <ng-container matColumnDef="AssignedTo">
+                     <ng-container matColumnDef="assignedTo">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Assigned To </th>
-                        <td mat-cell *matCellDef="let element"> {{element.AssignedTo}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.assignedTo}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="Category">
+                     <ng-container matColumnDef="category">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Category </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Category}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="SubCategory">
+                     <ng-container matColumnDef="subCategory">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Sub Category </th>
-                        <td mat-cell *matCellDef="let element"> {{element.SubCategory}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.subCategory}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="CreationTime">
+                     <ng-container matColumnDef="creationTime">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Creation Time </th>
                         <td mat-cell *matCellDef="let element">
-                           {{element.CreationDate}} <i class="fas fa-clock clock-green"></i> {{element.CreationTime}}
+                           {{element.creationDate}} <i class="fas fa-clock clock-green"></i> {{element.creationTime}}
                         </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="Status">
+                     <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Status </th>
-                        <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
                      </ng-container>
-                     <ng-container matColumnDef="Remark">
+                     <ng-container matColumnDef="remark">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Remark </th>
                         <td mat-cell *matCellDef="let element">
                            <div class="form-group m-0">
@@ -145,15 +145,15 @@
                         </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="Action">
+                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
                         <td mat-cell *matCellDef="let element">
                            <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
-                              data-placement="top" title="" data-original-title="image"></i>
+                              data-placement="top" title="" data-original-title="image" data-toggle="modal" data-target="#myModal" (click)="onTabClick('imageSource')"></i>
                            <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
                               data-placement="top" title="" data-original-title="link"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
-                              title="" data-original-title="Edit" (click)="onTabClick('add-incident')"
+                              title="" data-original-title="Edit" (click)="onTabClick('edit-incident')"
                               data-toggle="modal" data-target="#myModal"></i>
                         </td>
                      </ng-container>
@@ -169,5 +169,6 @@
       </div>
    </div>
 </div>
-
 <add-incident *ngIf="tabIndex === 'add-incident'" [curRow]="curRow"></add-incident>
+<edit-incident *ngIf="tabIndex === 'edit-incident'" [curRow]="curRow"></edit-incident>
+<image-view *ngIf="tabIndex === 'imageSource'" [imageControl]="'incidentImage'"></image-view>

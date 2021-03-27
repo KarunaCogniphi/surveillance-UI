@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedServiceService } from '../../shared/shared-service.service';
 
 @Component({
-  selector: 'add-incident',
-  templateUrl: './add-incident.component.html',
-  styleUrls: ['./add-incident.component.css']
+  selector: 'edit-incident',
+  templateUrl: './edit-incident.component.html',
+  styleUrls: ['./edit-incident.component.css']
 })
-export class AddIncidentComponent implements OnInit {
+export class EditIncidentComponent implements OnInit {
 
   @Output() public child = new EventEmitter<String>();
   @Output() public formData = new EventEmitter<String>();
@@ -34,7 +34,7 @@ export class AddIncidentComponent implements OnInit {
   ];
   categoryArray = [
     { id: 0, name: 'Select Category' },
-    { id: 1, name: 'Security Breach' },
+    { id: 1, name: 'Security Breech' },
     { id: 2, name: 'Crowd Control' },
     { id: 2, name: 'Anonymous report' },
   ];
@@ -44,24 +44,24 @@ export class AddIncidentComponent implements OnInit {
     { id: 2, name: 'Cafe Area' },
     { id: 2, name: 'Vehicle movement' },
   ];
-  
   fileUploadObj = { label: 'Upload Document', viewText: 'Upload Document' };
-  createIncidentForm: FormGroup;
+
+  editIncidentForm: FormGroup;
   @Input() curRow: any;
 
   constructor(private formbuilder: FormBuilder, private sharedService:SharedServiceService) { }
 
   ngOnInit(): void {
-    this.createIncidentForm = this.formbuilder.group({
-      id:[],
-      desc: [],
-      assetId: [''],
+    this.editIncidentForm = this.formbuilder.group({
+      id:'ID 3',
+      desc: 'Unauthorized entry',
+      assetId: ['BM 28'],
       status: [],
       priority: [''],
       severity: [],
       category: [],
       subCategory: [],
-      associatedAlert: 'NA',
+      associatedAlert: 'NA8',
       slaBreach: 'No',
       creationTime:new Date().getHours +':'+new Date().getMilliseconds
     });
@@ -75,7 +75,7 @@ export class AddIncidentComponent implements OnInit {
     //   priority: this.curRow.priority
     // });
   }
-  createIncident(formData) {
+  editIncident(formData) {
     if(formData) {
       this.sharedService.incidentValue.next(formData);
       this.child.emit('close');

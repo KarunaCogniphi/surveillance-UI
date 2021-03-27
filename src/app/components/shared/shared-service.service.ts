@@ -11,4 +11,7 @@ export class SharedServiceService {
   
   assetValue = new BehaviorSubject({});
   assetValue$ = this.assetValue.asObservable();
+
+  incidentValue = new BehaviorSubject({});
+  incidentValue$ = this.incidentValue.asObservable();
 }

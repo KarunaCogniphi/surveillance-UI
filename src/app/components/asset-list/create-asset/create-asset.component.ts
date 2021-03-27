@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/cor
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { SharedServiceService } from '../../shared/shared-service.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'create-asset',
@@ -12,13 +13,14 @@ export class CreateAssetComponent implements OnInit {
 
   @Output() public child = new EventEmitter<String>();
   @Output() public formData = new EventEmitter<String>();
-  receivedData:any;
+  receivedData:any; 
 
   categoryArray = [
     { id: 0, name: 'Select Category' },
-    { id: 1, name: 'Branch 1' },
-    { id: 2, name: 'Branch 2' },
-    { id: 3, name: 'Branch 3' },
+    { id: 1, name: 'Apartments' },
+    { id: 2, name: 'Bank' },
+    { id: 3, name: 'Office' },
+    { id: 4, name: 'ATM' }
   ];
   priorityArray = [
     { id: 0, name: 'Select Priority' },
@@ -43,6 +45,7 @@ export class CreateAssetComponent implements OnInit {
   startDate = new Date(1990, 0, 1);
 
   @ViewChild("placesRef") placesRef : GooglePlaceDirective;
+  
   curAddress: any;
     
   public handleAddressChange(address: any) {
@@ -57,13 +60,15 @@ export class CreateAssetComponent implements OnInit {
     this.createAssetForm = this.formbuilder.group({
       id: [],
       name: ['', Validators.required],
-      category: [],
+      category: [Validators.required],
       value: [''],
-      priority: [],
-      location: [''],
+      priority: [Validators.required],
+      location: ['',Validators.required],
       assignedTo: [''],
-      type: [''],
-      status: [''],
+      associatedAlerts: 0,
+      associatedIncidents: 0,
+      type: ['',Validators.required],
+      status: ['',Validators.required]
     });
   }
 

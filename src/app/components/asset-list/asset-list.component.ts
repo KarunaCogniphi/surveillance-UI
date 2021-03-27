@@ -1,5 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,18 +10,20 @@ export interface PeriodicElement {
   id: string;
   name: string;
   category: string;
-  value: number;
   priority: string;
   location: string;
+  associatedAlerts: string;
+  associatedIncidents: string;
   assignedTo: string;
   type: string;
   status: string;
   options: string;
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 'BM 2', name: 'Branch 2', category: 'Branch', value: 66, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
-  { id: 'BM 1', name: 'Branch 1', category: 'Branch', value: 50, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 3', name: 'Branch 3', category: 'Branch 4', value: 33, priority: 'Low', location: '1st line, TVM', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 2', name: 'Branch 2', category: 'Branch',  priority: 'Critical', location: '1st line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+  { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', associatedAlerts:'1', associatedIncidents:'4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 4', name: 'Branch 4', category: 'Industry',  priority: 'Low', location: '4th line, TVM', associatedAlerts:'4', associatedIncidents:'1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
 ];
 
 @Component({
@@ -34,20 +36,23 @@ export class AssetListComponent implements OnInit {
 
   // dataSource = new MatTableDataSource<any>();
   assetListData = [
-    { id: 'BM 2', name: 'Branch 2', category: 'Branch', value: 66, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
-    { id: 'BM 1', name: 'Branch 1', category: 'Branch', value: 50, priority: 'High', location: '1st line, TVM', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
-    { id: 'BM 3', name: 'Branch 3', category: 'Branch 4', value: 33, priority: 'Low', location: '1st line, TVM', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  ];
+    { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+  { id: 'BM 1', name: 'Branch 1', category: 'ATM',  priority: 'Critical', location: '2nd line, TVM', associatedAlerts:'1', associatedIncidents:'4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 4', name: 'Branch 4', category: 'Industry',  priority: 'Low', location: '4th line, TVM', associatedAlerts:'4', associatedIncidents:'1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
+];
   dataSource = new MatTableDataSource<any>();
   selection = new SelectionModel<any>(true, []);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  displayedColumns: string[] = ['select', 'id', 'name', 'category', 'value', 'priority', 'location', 'assignedTo', 'type', 'status', 'options'];
+  @Output() public child = new EventEmitter<String>();
+  
+  displayedColumns: string[] = ['select', 'id', 'name', 'category', 'priority', 'location', 'associatedAlerts', 'associatedIncidents', 'assignedTo', 'type', 'status', 'options'];
   tabIndex: any;
   assetName: any;
   curRow: any;
   newRowdata: {};
+  imageSource: string;
 
   constructor(public dialog: MatDialog, private sharedService:SharedServiceService) { }
 
@@ -60,6 +65,15 @@ export class AssetListComponent implements OnInit {
         {
           // this.newRowdata = data;
           // this.dataSource = new MatTableDataSource([]);
+          var ind = this.assetListData.length;
+          ++ind;
+          for (const ke in data){
+            console.log('key',ke);
+            if(ke == "id"){
+              console.log('key in',ke);
+              data[ke] = 'BM '+ind;
+            }
+          }
           this.assetListData.unshift(data);
           this.dataSource = new MatTableDataSource(this.assetListData);
           this.dataSource.sort = this.sort;
@@ -123,6 +137,31 @@ export class AssetListComponent implements OnInit {
     });
     
   }
+
+  editDialog(curRow) {
+    if(curRow) {
+      this.sharedService.assetValue.next(curRow);
+      this.child.emit('close');
+    }
+    const dialogRef = this.dialog.open(DialogContentEditDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+    
+  }
+}
+@Component({
+  selector: 'dialog-content-edit-dialog',
+  template: `<edit-asset (child)="linkToggler($event)"></edit-asset>`
+})
+export class DialogContentEditDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogContentEditDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    linkToggler(event) {
+    this.dialogRef.close();
+  }
 }
 
 @Component({
@@ -137,3 +176,4 @@ export class DialogContentExampleDialog {
     this.dialogRef.close();
   }
 }
+

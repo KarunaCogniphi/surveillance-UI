@@ -1,7 +1,7 @@
 <div class="container-fluid mt-3 mb-5">
    <div class="mb-3 text-ashdark clearfix">
       <h2 class="float-left title-head">Asset List</h2>
-      <div class="float-right" (click)="onTabClick('add-asset')">
+      <div class="float-right" >
          <div class="d-inline-block mr-2">
             <button type="button" class="btn btn-small" (click)="openDialog()">
                <i class="fas fa-plus f-16"></i>
@@ -86,10 +86,10 @@
                         <td mat-cell *matCellDef="let element"> {{element.category}} </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="value">
+                    <!-- <ng-container matColumnDef="value">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Value </th>
                         <td mat-cell *matCellDef="let element"> {{element.value}} </td>
-                     </ng-container>
+                     </ng-container>-->
 
                      <!-- Symbol Column -->
                      <ng-container matColumnDef="priority">
@@ -97,7 +97,7 @@
                         <td mat-cell *matCellDef="let element">
                            <!-- <span class="badge badge-medium">{{element.Priority}}</span>  -->
                            <span
-                              [ngClass]="{'badge badge-medium': element.priority === 'Medium', 'badge badge-high':element.priority === 'High', 'badge badge-low':element.priority === 'Low' }">{{element.priority}}</span>
+                              [ngClass]="{'badge badge-critical': element.priority === 'Critical', 'badge badge-medium': element.priority === 'Medium', 'badge badge-high':element.priority === 'High', 'badge badge-low':element.priority === 'Low' }">{{element.priority}}</span>
                         </td>
                         <!-- <span class="badge badge-high">High</span> -->
                      </ng-container>
@@ -108,16 +108,7 @@
                         <td mat-cell *matCellDef="let element"> {{element.location}} </td>
                      </ng-container>
 
-                     <!-- <ng-container matColumnDef="AssociatedAlerts">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Alerts </th>
-                        <td mat-cell *matCellDef="let element"> {{element.AssociatedAlerts}} </td>
-                     </ng-container>
-
-                     <ng-container matColumnDef="AssociatedIncidents">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Incidents </th>
-                        <td mat-cell *matCellDef="let element"> {{element.AssociatedIncidents}} </td>
-                     </ng-container> -->
-
+                    
                      <!-- Symbol Column -->
                      <ng-container matColumnDef="assignedTo">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Assigned </th>
@@ -142,17 +133,27 @@
                         <!-- <span class="dot-red dot-bg-active">Active </span> -->
                      </ng-container>
 
+                     <ng-container matColumnDef="associatedAlerts">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Alerts # </th>
+                        <td mat-cell *matCellDef="let element"> {{element.associatedAlerts}} </td>
+                     </ng-container>
+
+                     <ng-container matColumnDef="associatedIncidents">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Incidents # </th>
+                        <td mat-cell *matCellDef="let element"> {{element.associatedIncidents}} </td>
+                     </ng-container>
+
                      <!-- Symbol Column -->
                      <ng-container matColumnDef="options">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Options </th>
                         <td mat-cell *matCellDef="let element">
                            <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
-                              data-placement="top" title="" data-original-title="image"></i>
+                              data-placement="top" title="" data-original-title="image"  data-toggle="modal" data-target="#myModal" (click)="onTabClick('imageSource')"></i>
                            <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
                               data-placement="top" title="" data-original-title="link"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
-                              title="" data-original-title="Edit" data-toggle="modal" data-target="#myModal2"
-                              (click)="editRow('edit-asset', element)"></i>
+                              title="" data-original-title="Edit" 
+                              (click)="editDialog(row)"></i>
                         </td>
 
                      </ng-container>
@@ -168,5 +169,7 @@
    </div>
 </div>
 
+<image-view *ngIf="tabIndex === 'imageSource'" [imageControl]="'assetImage'"></image-view>
+<!--<img src="../../../../assets/image/map.jpg" *ngIf="tabIndex === 'imageSource1'" alt="map" width="50%" height="200px">-->
 
-<edit-asset *ngIf="assetName === 'edit-asset'" [curRow]="curRow"></edit-asset>
+

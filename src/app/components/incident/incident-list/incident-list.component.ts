@@ -3,29 +3,30 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { SharedServiceService } from '../../shared/shared-service.service';
 
 export interface PeriodicElement {
-  Id: string;
-  Desc: string;
-  AssetId: string;
-  Priority: string;
-  Severity: string;
-  AssociatedAlert: string;
-  SlaBreach: string;
-  Category: string;
-  SubCategory: string;
-  CreationDate: string;
-  CreationTime: string;
-  AssignedTo: string;
-  Status: string;
-  Remark: string;
-  Action: string;
+  id: string;
+  desc: string;
+  assetId: string;
+  priority: string;
+  severity: string;
+  associatedAlert: string;
+  slaBreach: string;
+  category: string;
+  subCategory: string;
+  creationDate: string;
+  creationTime: string;
+  assignedTo: string;
+  status: string;
+  remark: string;
+  action: string;
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  { Id: 'ID 1', Desc: 'Unauthorized Access in Gate', AssetId: 'BBM 1', Priority: 'Critical', Severity: 'Critical', AssociatedAlert:'2', SlaBreach: 'No', Category: 'Security Breech', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Karuna karan', Status: 'Close', Remark: 'sss', Action: 'jj' },
-  { Id: 'ID 2', Desc: 'Back EntranceDoor broken', AssetId: 'BBM 2', Priority: 'Critical', Severity: 'Critical', AssociatedAlert:'1', SlaBreach: 'Yes', Category: 'Security Breech', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
-  { Id: 'ID 3', Desc: 'Hall Crowded Area', AssetId: 'BBM 3', Priority: 'Medium', Severity: 'High', AssociatedAlert:'0', SlaBreach: 'Yes', Category: 'Crowd Control', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
-  { Id: 'ID 4', Desc: 'Branch 4', AssetId: 'BBM 4', Priority: 'Low', Severity: 'Low', AssociatedAlert:'0', SlaBreach: 'No', Category: 'Others', SubCategory: '-', CreationDate:'20-01-2021', CreationTime: ' 12:00 PM', AssignedTo: 'Fer', Status: 'Close', Remark: 'aaa', Action: 'let' },
+  { id: 'ID 1', desc: 'Unauthorized Access in Gate', assetId: 'BBM 1', priority: 'Critical', severity: 'Critical', associatedAlert:'2', slaBreach: 'No', category: 'Security Breech', subCategory: '-', creationDate:'20-01-2021', creationTime: ' 12:00 PM', assignedTo: 'Karuna karan', status: 'Close', remark: 'sss', action: 'jj' },
+  { id: 'ID 2', desc: 'Back EntranceDoor broken', assetId: 'BBM 2', priority: 'Critical', severity: 'Critical', associatedAlert:'1', slaBreach: 'Yes', category: 'Security Breech', subCategory: '-', creationDate:'20-01-2021', creationTime: ' 12:00 PM', assignedTo: 'Ferose', status: 'Close', remark: 'aaa', action: 'let' },
+  { id: 'ID 3', desc: 'Hall Crowded Area', assetId: 'BBM 3', priority: 'Medium', severity: 'High', associatedAlert:'0', slaBreach: 'Yes', category: 'Crowd Control', subCategory: '-', creationDate:'20-01-2021', creationTime: ' 12:00 PM', assignedTo: 'Rajesh', status: 'Close', remark: 'aaa', action: 'let' },
+  { id: 'ID 4', desc: 'Branch 4', assetId: 'BBM 4', priority: 'Low', severity: 'Low', associatedAlert:'0', slaBreach: 'No', category: 'Others', subCategory: '-', creationDate:'20-01-2021', creationTime: ' 12:00 PM', assignedTo: 'Fer', status: 'Vini Manu', remark: 'aaa', action: 'let' },
 ];
 
 @Component({
@@ -34,21 +35,55 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./incident-list.component.css']
 })
 export class IncidentListComponent implements OnInit {
+  incidentListData = [
+  { id: 'ID 1', desc: 'Unauthorized Access in Gate', assetId: 'BBM 1', priority: 'Critical', severity: 'Critical', associatedAlert:'2', slaBreach: 'No', category: 'Security Breach', subCategory: '-', creationDate:'20-01-2021', creationTime: ' 12:00 PM', assignedTo: 'Karuna karan', status: 'Close', remark: 'sss', action: 'jj' },
+  { id: 'ID 2', desc: 'Back EntranceDoor broken', assetId: 'BBM 2', priority: 'Critical', severity: 'Critical', associatedAlert:'1', slaBreach: 'Yes', category: 'Security Breach', subCategory: '-', creationDate:'06-02-2021', creationTime: ' 06:30 PM', assignedTo: 'Ferose', status: 'Close', remark: 'aaa', action: 'let' },
+  { id: 'ID 3', desc: 'Hall Crowded Area', assetId: 'BBM 3', priority: 'Medium', severity: 'High', associatedAlert:'0', slaBreach: 'Yes', category: 'Crowd Control', subCategory: '-', creationDate:'19-01-2021', creationTime: ' 04:40 PM', assignedTo: 'Rajesh', status: 'Close', remark: 'aaa', action: 'let' },
+  { id: 'ID 4', desc: 'Branch 4', assetId: 'BBM 4', priority: 'Low', severity: 'Low', associatedAlert:'0', slaBreach: 'No', category: 'Others', subCategory: '-', creationDate:'14-03-2021', creationTime: ' 11:33 PM', assignedTo: 'Vini Manu', status: 'Open', remark: 'aaa', action: 'let' },
+  ];
 
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = new MatTableDataSource<any>();
+  selection = new SelectionModel<any>(true, []);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['select', 'Id', 'Desc', 'AssetId', 'Priority', 'Severity', 'AssociatedAlert', 'SlaBreach', 'Category', 'SubCategory', 'CreationTime', 'AssignedTo', 'Status', 'Remark', 'Action'];
+  displayedColumns: string[] = ['select', 'id', 'desc', 'assetId', 'priority', 'severity', 'associatedAlert', 'slaBreach', 'category', 'subCategory', 'creationTime', 'assignedTo', 'status', 'remark', 'action'];
   tabIndex: any;
   curRow: any;
   incidentName: any;
 
-  constructor() { }
+  constructor(private sharedService:SharedServiceService) { }
 
 
   ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.incidentListData);
+    this.sharedService.incidentValue$.subscribe({
+      next: (data:any) => {
+        if(!!data && Object.keys(data).length>0)
+        {
+          // this.newRowdata = data;
+          // this.dataSource = new MatTableDataSource([]);
+          var ind = this.incidentListData.length;
+          ++ind;
+          for (const ke in data){
+            console.log('key',ke);
+            if(ke == "id"){
+              console.log('key in',ke);
+              data[ke] = 'ID '+ind;
+            }
+          }
+          data['creationDate'] = '27-03-2021'; 
+          data['creationTime'] = '12:10 PM';
+          this.incidentListData.unshift(data);
+          this.dataSource = new MatTableDataSource(this.incidentListData);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+          console.log('hh',this.incidentListData);
+        }
+      },
+      error: err => {},
+      complete: () => {}
+    })
   }
 
   ngAfterViewInit() {
