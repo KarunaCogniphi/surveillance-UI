@@ -18,10 +18,13 @@
                <a [routerLink]="['sla']" class="nav-link">SLA</a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']">
-               <a [routerLink]="['incident-list']" class="nav-link">Incident</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['active']">
-               <a [routerLink]="['incident-chat-view']" class="nav-link">Chat</a>
+               <a href="#" class="nav-link" data-toggle="dropdown">Incident <i class="fas fa-sort-down f-12 ml-1"></i></a>
+                <div class="dropdown-menu mt-4">
+                           <a class="dropdown-item" [routerLink]="['incident-list']">Dashboard</a>
+                           <a class="dropdown-item" [routerLink]="['incident-list']">Incident List</a>
+                           <a class="dropdown-item" [routerLink]="['incident-chat-view']">Incident War Room</a>
+                           <a class="dropdown-item" href="#">Reports</a>
+                        </div>
             </li>
             <li class="nav-item " [routerLinkActive]="['active']">
                <a [routerLink]="['alerts']" class="nav-link">Alerts</a>
