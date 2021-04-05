@@ -12,9 +12,6 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateAssetComponent implements OnInit, OnChanges {
 
-  @Output() public child = new EventEmitter<String>();
-  @Output() public formData = new EventEmitter<String>();
-  receivedData: any;
   categoryArray = ['Select Category', 'Apartments', 'Bank', 'Office', 'ATM', 'Branch', 'Industry'];
   priorityArray = ['Select Priority', 'Critical', 'High', 'Medium', 'Low'];
   typeArray = ['Select Type', 'Fixed', 'None'];
@@ -29,12 +26,10 @@ export class CreateAssetComponent implements OnInit, OnChanges {
 
   curAddress: any;
   editDataFromAssetList: any;
-  categoryValue: any = undefined;
 
   public handleAddressChange(address: any) {
     // console.log(address.formatted_address);
     this.curAddress = address.formatted_address;
-    // Do some stuff
   }
 
   constructor(private formbuilder: FormBuilder, private sharedService: SharedServiceService, private dialogRef: MatDialogRef<CreateAssetComponent>) { }
@@ -62,11 +57,9 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   }
 
   createAsset(formData) {
-
     formData.location = this.curAddress;
     if (formData) {
       this.sharedService.assetValue.next(formData);
-      // this.child.emit('close');
       this.cancel();
     }
   }
@@ -74,23 +67,13 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   getMode() {
     this.sharedService.assetMode$.subscribe({
       next: (data: any) => {
-        
-        if (data === 'Add') {
-          this.resetForm();
-        } else if(data === 'Edit') {
+       if(data === 'Edit') {
           this.editAsset();
         }
       },
       error: err => { },
       complete: () => { }
     })
-  }
-
-
-  resetForm() {
-    // alert('insideReset');
-    this.createAssetForm.reset();
-      // this.createAssetForm.get('category').patchValue('');
   }
 
   editAsset() {
@@ -107,11 +90,7 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   }
 
   patchAssetForm(editData) {
-    // this.createAssetForm.reset();
-    console.log('editData', editData);
-    //  this.categoryValue = editData.category;
-
-    
+    // console.log('editData', editData);
     this.createAssetForm.patchValue({
       name: editData.name,
       category: editData.category,
@@ -127,3 +106,4 @@ export class CreateAssetComponent implements OnInit, OnChanges {
     this.dialogRef.close();
   }
 }
+

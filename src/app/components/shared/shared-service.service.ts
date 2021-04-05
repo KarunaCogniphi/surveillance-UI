@@ -20,4 +20,11 @@ export class SharedServiceService {
 
   incidentValue = new BehaviorSubject({});
   incidentValue$ = this.incidentValue.asObservable();
+
+  incidentMode = new BehaviorSubject('');
+  incidentMode$ = this.incidentMode.asObservable();
+
+  editIncidentValue = new BehaviorSubject('');
+  editIncidentValue$ = this.editIncidentValue.asObservable();
+  
 }

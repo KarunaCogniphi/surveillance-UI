@@ -148,7 +148,7 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Options </th>
                         <td mat-cell *matCellDef="let element">
                            <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
-                              data-placement="top" title="" data-original-title="image"  data-toggle="modal" data-target="#myModal" (click)="onTabClick('imageSource')"></i>
+                              data-placement="top" title="" data-original-title="image"  data-toggle="modal" data-target="#myModal" (click)="iconClick('imageSource')"></i>
                            <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
                               data-placement="top" title="" data-original-title="link"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
@@ -169,7 +169,7 @@
    </div>
 </div>
 
-<image-view *ngIf="tabIndex === 'imageSource'" [imageControl]="'assetImage'"></image-view>
+<image-view *ngIf="iconName === 'imageSource'" [imageControl]="'assetImage'"></image-view>
 <!--<img src="../../../../assets/image/map.jpg" *ngIf="tabIndex === 'imageSource1'" alt="map" width="50%" height="200px">-->
 
 

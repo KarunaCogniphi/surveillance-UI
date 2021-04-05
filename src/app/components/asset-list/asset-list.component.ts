@@ -21,12 +21,6 @@ export interface PeriodicElement {
   status: string;
   options: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
-  { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', associatedAlerts: '1', associatedIncidents: '4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 4', name: 'Branch 4', category: 'Industry', priority: 'Low', location: '4th line, TVM', associatedAlerts: '4', associatedIncidents: '1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
-];
 
 @Component({
   selector: 'asset-list',
@@ -50,11 +44,7 @@ export class AssetListComponent implements OnInit {
   @Output() public child = new EventEmitter<String>();
 
   displayedColumns: string[] = ['select', 'id', 'name', 'category', 'priority', 'location', 'associatedAlerts', 'associatedIncidents', 'assignedTo', 'type', 'status', 'options'];
-  tabIndex: any;
-  assetName: any;
-  curRow: any;
-  newRowdata: {};
-  imageSource: string;
+  iconName: string;
 
   constructor(public dialog: MatDialog, private sharedService: SharedServiceService) { }
 
@@ -120,12 +110,11 @@ export class AssetListComponent implements OnInit {
     }
   }
 
-  onTabClick(index) {
-    this.tabIndex = index;
+  iconClick(iconName:string) {
+    this.iconName = iconName;
   }
 
   openDialog(mode: string, editRow?: any): void {
-    // alert('open'+mode);
     let dialogRef = this.dialog.open(CommonDialogComponent, {
       data: { component: CreateAssetComponent }
     });

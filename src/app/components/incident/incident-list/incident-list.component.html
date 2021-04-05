@@ -1,7 +1,7 @@
 <div class="container-fluid mt-3 mb-5">
    <div class="mb-3 text-ashdark clearfix">
       <h2 class="float-left title-head">Incident List</h2>
-      <div class="float-right" (click)="onTabClick('add-incident')">
+      <div class="float-right" (click)="openDialog('Add')">
          <div class="d-inline-block mr-2">
             <button type="button" class="btn btn-small" data-toggle="modal" data-target="#myModal">
                <i class="fas fa-plus f-16"></i>
@@ -153,7 +153,7 @@
                            <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
                               data-placement="top" title="" data-original-title="link"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
-                              title="" data-original-title="Edit" (click)="onTabClick('edit-incident')"
+                              title="" data-original-title="Edit" (click)="openDialog('Edit', element)"
                               data-toggle="modal" data-target="#myModal"></i>
                         </td>
                      </ng-container>
@@ -169,6 +169,6 @@
       </div>
    </div>
 </div>
-<add-incident *ngIf="tabIndex === 'add-incident'" [curRow]="curRow"></add-incident>
-<edit-incident *ngIf="tabIndex === 'edit-incident'" [curRow]="curRow"></edit-incident>
+<!-- <add-incident *ngIf="tabIndex === 'add-incident'" [curRow]="curRow"></add-incident>
+<edit-incident *ngIf="tabIndex === 'edit-incident'" [curRow]="curRow"></edit-incident> -->
 <image-view *ngIf="tabIndex === 'imageSource'" [imageControl]="'incidentImage'"></image-view>

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { SharedServiceService } from '../../shared/shared-service.service';
 
 @Component({
@@ -11,45 +12,19 @@ export class AddIncidentComponent implements OnInit {
 
   @Output() public child = new EventEmitter<String>();
   @Output() public formData = new EventEmitter<String>();
-  receivedData:any;
 
-  statusArray = [
-    { id: 0, name: 'Select Status' },
-    { id: 1, name: 'Close' },
-    { id: 2, name: 'Open' },
-    { id: 3, name: 'InProgress' },
-  ];
-  severityArray = [
-    { id: 0, name: 'Select Severity' },
-    { id: 1, name: 'Critical' },
-    { id: 1, name: 'High' },
-    { id: 2, name: 'Medium' },
-    { id: 3, name: 'Low' },
-  ];
-  priorityArray = [
-    { id: 0, name: 'Select Priority' },
-    { id: 1, name: 'Critical' },
-    { id: 2, name: 'Medium' },
-    { id: 2, name: 'Low' },
-  ];
-  categoryArray = [
-    { id: 0, name: 'Select Category' },
-    { id: 1, name: 'Security Breach' },
-    { id: 2, name: 'Crowd Control' },
-    { id: 2, name: 'Anonymous report' },
-  ];
-  subCategoryArray = [
-    { id: 0, name: 'Select Category' },
-    { id: 1, name: 'Unauthorized' },
-    { id: 2, name: 'Cafe Area' },
-    { id: 2, name: 'Vehicle movement' },
-  ];
+  statusArray = ['Select Status', 'Close', 'Open', 'InProgress'];
+  severityArray = ['Select Severity', 'Critical', 'High', 'Medium', 'Low'];
+  priorityArray = ['Select Priority', 'Critical', 'Medium', 'Low'];
+  categoryArray = ['Select Category', 'Security Breach', 'Crowd Control', 'Anonymous report'];
+  subCategoryArray = ['Select Category', 'Unauthorized', 'Cafe Area', 'Vehicle movement'];
   
   fileUploadObj = { label: 'Upload Document', viewText: 'Upload Document' };
   createIncidentForm: FormGroup;
-  @Input() curRow: any;
+  curAddress: any;
+  editDataFromIncidentList: any;
 
-  constructor(private formbuilder: FormBuilder, private sharedService:SharedServiceService) { }
+  constructor(private formbuilder: FormBuilder, private sharedService:SharedServiceService, private dialogRef: MatDialogRef<AddIncidentComponent>) { }
 
   ngOnInit(): void {
     this.createIncidentForm = this.formbuilder.group({
@@ -63,26 +38,69 @@ export class AddIncidentComponent implements OnInit {
       subCategory: [],
       associatedAlert: 'NA',
       slaBreach: 'No',
+      assignedTo: [''],
       creationTime:new Date().getHours +':'+new Date().getMilliseconds
     });
+    this.getMode();
   }
   ngOnChanges() {
-    // this.createIncidentForm.reset();
-    // this.createIncidentForm.patchValue({
-    //   desc: this.curRow.desc,
-    //   assetId: this.curRow.assetId,
-    //   status: this.curRow.status,
-    //   priority: this.curRow.priority
-    // });
   }
+  
+  getMode() {
+    this.sharedService.incidentMode$.subscribe({
+      next: (data: any) => {
+       if(data === 'Edit') {
+          this.editIncident();
+        }
+      },
+      error: err => { },
+      complete: () => { }
+    })
+  }
+
+  editIncident() {
+    this.sharedService.editIncidentValue$.subscribe({
+      next: (data: any) => {
+        if (!!data && Object.keys(data).length > 0) {
+          this.editDataFromIncidentList = data;
+          this.patchIncidentForm(this.editDataFromIncidentList);
+        }
+      },
+      error: err => { },
+      complete: () => { }
+    })
+  }
+
+  patchIncidentForm(editData) {
+    // console.log('editData', editData);
+    this.createIncidentForm.patchValue({
+      id: editData.id,
+      desc: editData.desc,
+      assetId: editData.assetId,
+      status: editData.status,
+      priority: editData.priority,
+      severity: editData.severity,
+      category: editData.category,
+      subCategory: editData.subCategory,
+      associatedAlert: editData.associatedAlert,
+      slaBreach: editData.slaBreach,
+      assignedTo: editData.assignedTo,
+    });
+  }
+
+  public handleAddressChange(address: any) {
+    // console.log(address.formatted_address);
+    this.curAddress = address.formatted_address;
+}
   createIncident(formData) {
     if(formData) {
       this.sharedService.incidentValue.next(formData);
-      this.child.emit('close');
+      this.closeDialog();
     }
   }
 
-  onNoClick() {
-    this.child.emit('close');
+  closeDialog() {
+    this.createIncidentForm.reset();
+    this.dialogRef.close();
   }
 }
