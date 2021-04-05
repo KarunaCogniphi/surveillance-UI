@@ -4,7 +4,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { CommonDialogComponent } from '../shared/common-dialog/common-dialog.component';
 import { SharedServiceService } from '../shared/shared-service.service';
+import { CreateAssetComponent } from './create-asset/create-asset.component';
 
 export interface PeriodicElement {
   id: string;
@@ -20,10 +22,10 @@ export interface PeriodicElement {
   options: string;
 }
 const ELEMENT_DATA: PeriodicElement[] = [
-  { id: 'BM 2', name: 'Branch 2', category: 'Branch',  priority: 'Critical', location: '1st line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
-  { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', associatedAlerts:'1', associatedIncidents:'4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 4', name: 'Branch 4', category: 'Industry',  priority: 'Low', location: '4th line, TVM', associatedAlerts:'4', associatedIncidents:'1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
+  { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+  { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', associatedAlerts: '1', associatedIncidents: '4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+  { id: 'BM 4', name: 'Branch 4', category: 'Industry', priority: 'Low', location: '4th line, TVM', associatedAlerts: '4', associatedIncidents: '1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
 ];
 
 @Component({
@@ -36,17 +38,17 @@ export class AssetListComponent implements OnInit {
 
   // dataSource = new MatTableDataSource<any>();
   assetListData = [
-    { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
-  { id: 'BM 1', name: 'Branch 1', category: 'ATM',  priority: 'High', location: '2nd line, TVM', associatedAlerts:'1', associatedIncidents:'4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts:'2', associatedIncidents:'3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
-  { id: 'BM 4', name: 'Branch 4', category: 'Industry',  priority: 'Low', location: '4th line, TVM', associatedAlerts:'4', associatedIncidents:'1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
-];
+    { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+    { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', associatedAlerts: '1', associatedIncidents: '4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+    { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+    { id: 'BM 4', name: 'Branch 4', category: 'Industry', priority: 'Low', location: '4th line, TVM', associatedAlerts: '4', associatedIncidents: '1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
+  ];
   dataSource = new MatTableDataSource<any>();
   selection = new SelectionModel<any>(true, []);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Output() public child = new EventEmitter<String>();
-  
+
   displayedColumns: string[] = ['select', 'id', 'name', 'category', 'priority', 'location', 'associatedAlerts', 'associatedIncidents', 'assignedTo', 'type', 'status', 'options'];
   tabIndex: any;
   assetName: any;
@@ -54,35 +56,34 @@ export class AssetListComponent implements OnInit {
   newRowdata: {};
   imageSource: string;
 
-  constructor(public dialog: MatDialog, private sharedService:SharedServiceService) { }
+  constructor(public dialog: MatDialog, private sharedService: SharedServiceService) { }
 
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.assetListData);
     this.sharedService.assetValue$.subscribe({
-      next: (data:any) => {
-        if(!!data && Object.keys(data).length>0)
-        {
+      next: (data: any) => {
+        if (!!data && Object.keys(data).length > 0) {
           // this.newRowdata = data;
           // this.dataSource = new MatTableDataSource([]);
           var ind = this.assetListData.length;
           ++ind;
-          for (const ke in data){
-            console.log('key',ke);
-            if(ke == "id"){
-              console.log('key in',ke);
-              data[ke] = 'BM '+ind;
+          for (const ke in data) {
+            // console.log('key',ke);
+            if (ke == "id") {
+              // console.log('key in',ke);
+              data[ke] = 'BM ' + ind;
             }
           }
           this.assetListData.unshift(data);
           this.dataSource = new MatTableDataSource(this.assetListData);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          console.log('hh',this.assetListData);
+          // console.log('hh',this.assetListData);
         }
       },
-      error: err => {},
-      complete: () => {}
+      error: err => { },
+      complete: () => { }
     })
   }
 
@@ -123,57 +124,17 @@ export class AssetListComponent implements OnInit {
     this.tabIndex = index;
   }
 
-  editRow(assetName, curRow) {
-    this.assetName = assetName;
-    this.curRow = curRow;
-    // console.log(this.assetName, curRow);
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentExampleDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  openDialog(mode: string, editRow?: any): void {
+    // alert('open'+mode);
+    let dialogRef = this.dialog.open(CommonDialogComponent, {
+      data: { component: CreateAssetComponent }
     });
-    
-  }
 
-  editDialog(curRow) {
-    if(curRow) {
-      this.sharedService.assetValue.next(curRow);
-      this.child.emit('close');
+    // update mode in shared service
+    this.sharedService.assetMode.next(mode);
+
+    if (mode === 'Edit') {
+      this.sharedService.editAssetValue.next(editRow);
     }
-    const dialogRef = this.dialog.open(DialogContentEditDialog);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-    
   }
 }
-@Component({
-  selector: 'dialog-content-edit-dialog',
-  template: `<edit-asset (child)="linkToggler($event)"></edit-asset>`
-})
-export class DialogContentEditDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogContentEditDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-    linkToggler(event) {
-    this.dialogRef.close();
-  }
-}
-
-@Component({
-  selector: 'dialog-content-example-dialog',
-  template: `<create-asset (child)="linkToggler($event)"></create-asset>`
-})
-export class DialogContentExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogContentExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-    linkToggler(event) {
-    this.dialogRef.close();
-  }
-}
-

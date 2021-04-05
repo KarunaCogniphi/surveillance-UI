@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainHeaderComponent } from './components/shared/main-header/main-header.component';
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
-import { AssetListComponent, DialogContentExampleDialog, DialogContentEditDialog } from './components/asset-list/asset-list.component';
+import { AssetListComponent } from './components/asset-list/asset-list.component';
 import { NotFoundComponent } from './components/shared/not-found/not-found.component';
 import { MaterialModule } from './components/shared/material-module';
 import { IncidentComponent } from './components/incident/incident.component';
@@ -24,6 +24,7 @@ import { ImageViewComponent } from './components/shared/image-view/image-view.co
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AngularImageViewerModule } from "angular-x-image-viewer";
 import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
+import { CommonDialogComponent } from './components/shared/common-dialog/common-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,10 +42,9 @@ import { IncidentChatViewComponent } from './components/incident/incident-chat-v
     EditIncidentComponent,
     AlertsComponent,
     FileUploadComponent,
-    DialogContentExampleDialog,
-    DialogContentEditDialog,
     ImageViewComponent,
-    IncidentChatViewComponent
+    IncidentChatViewComponent,
+    CommonDialogComponent 
   ],
   imports: [
     BrowserModule,

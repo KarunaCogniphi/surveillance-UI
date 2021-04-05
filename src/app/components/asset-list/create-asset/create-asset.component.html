@@ -4,7 +4,7 @@
          <!-- <div class="modal-content"> -->
             <div class="modal-header" style="background-color:#c9cfdf !important">
                <h4 class="modal-title"><b style="font-size:20px;">Add Asset</b></h4>
-               <button type="button" class="close" (click)="onNoClick()">&times;</button>
+               <button type="button" class="close" (click)="cancel()">&times;</button>
             </div>
             <div class="modal-body">
                <div>
@@ -27,8 +27,9 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label for="sel3" class="f-w-600 title-head-ash">Asset Category*</label>
-                           <select class="form-control" id="sel3" formControlName="category">
-                              <option *ngFor="let category of categoryArray">{{category.name}}</option>
+                           <select class="form-control" id="sel3" formControlName="category" placeholder="Unit Price">
+                              <!-- <option *ngIf="categoryValue">{{categoryValue}}</option> -->
+                              <option  *ngFor="let category of categoryArray" value="{{ category }}">{{category}}</option>
                            </select>
                         </div>
                      </div>
@@ -44,7 +45,7 @@
                         <div class="form-group">
                            <label for="sel4" class="f-w-600 title-head-ash">Priority*</label>
                            <select class="form-control" id="sel4" formControlName="priority">
-                              <option *ngFor="let priority of priorityArray">{{priority.name}}</option>
+                              <option *ngFor="let priority of priorityArray" value="{{ priority }}">{{priority}}</option>
                            </select>
                         </div>
                      </div>
@@ -107,7 +108,7 @@
                         <div class="form-group">
                            <label for="sel1" class="f-w-600 title-head-ash">Type*</label>
                            <select class="form-control" id="sel1" formControlName="type">
-                              <option *ngFor="let type of typeArray">{{type.name}}</option>
+                              <option *ngFor="let type of typeArray" value="{{ type }}">{{type}}</option>
                            </select>
                         </div>
                      </div>
@@ -115,7 +116,7 @@
                         <div class="form-group">
                            <label for="sel2" class="f-w-600 title-head-ash">Status*</label>
                            <select class="form-control" id="sel2" formControlName="status">
-                              <option *ngFor="let status of statusArray">{{status.name}}</option>
+                              <option *ngFor="let status of statusArray" value="{{ status }}">{{status}}</option>
                            </select>
                         </div>
                      </div>
@@ -140,7 +141,7 @@
             <div class="modal-footer">
                <button type="button" class="btn btn-bg-darkblue mr-3" [disabled]="!createAssetForm.valid"
                   (click)="createAsset(createAssetForm.value)">Create</button>
-               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" (click)="onNoClick()">Cancel</span>
+               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" (click)="cancel()">Cancel</span>
             </div>
          <!-- </div> -->
       </div>

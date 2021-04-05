@@ -3,7 +3,7 @@
       <h2 class="float-left title-head">Asset List</h2>
       <div class="float-right" >
          <div class="d-inline-block mr-2">
-            <button type="button" class="btn btn-small" (click)="openDialog()">
+            <button type="button" class="btn btn-small" (click)="openDialog('Add')">
                <i class="fas fa-plus f-16"></i>
             </button>
          </div>
@@ -153,12 +153,12 @@
                               data-placement="top" title="" data-original-title="link"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
                               title="" data-original-title="Edit" 
-                              (click)="editDialog(row)"></i>
+                              (click)="openDialog('Edit', element)"></i>
                         </td>
 
                      </ng-container>
                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                      </tr>
                   </table>
                   <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
