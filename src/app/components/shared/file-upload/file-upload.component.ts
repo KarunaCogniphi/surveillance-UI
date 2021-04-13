@@ -17,7 +17,7 @@ export class FileUploadComponent implements OnInit {
   ngOnInit(): void {
     this.label = this.fileControl.label;
     this.viewText = this.fileControl.viewText;
-    console.log('label', this.label, this.viewText);
+    // console.log('label', this.label, this.viewText);
   }
 
   handleFileInput(event) {

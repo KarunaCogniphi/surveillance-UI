@@ -48,6 +48,7 @@ export class IncidentListComponent implements OnInit {
   tabIndex: any;
   curRow: any;
   incidentName: any;
+  iconName: string;
 
   constructor(public dialog: MatDialog, private sharedService:SharedServiceService) { }
 
@@ -63,9 +64,9 @@ export class IncidentListComponent implements OnInit {
           var ind = this.incidentListData.length;
           ++ind;
           for (const ke in data){
-            console.log('key',ke);
+            // console.log('key',ke);
             if(ke == "id"){
-              console.log('key in',ke);
+              // console.log('key in',ke);
               data[ke] = 'ID '+ind;
             }
           }
@@ -75,7 +76,6 @@ export class IncidentListComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.incidentListData);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          console.log('hh',this.incidentListData);
         }
       },
       error: err => {},
@@ -159,4 +159,9 @@ export class IncidentListComponent implements OnInit {
       this.sharedService.editIncidentValue.next(editRow);
     }
   }
+
+  iconClick(iconName:string) {
+    this.iconName = iconName;
+  }
+
 }

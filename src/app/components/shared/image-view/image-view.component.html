@@ -1,21 +1,21 @@
-<form [formGroup]="imageViewForm">
-   <div class="modal" id="myModal">
-       <div class="modal-dialog" style="max-width: 600px">
-           <div class="modal-content">
-               <!-- Modal Header -->
-               <div class="modal-header">
-                   <h4 class="modal-title"><b style="font-size:20px;">Uploaded Images</b></h4>
-                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               <!-- Modal body -->
-               <div *ngIf="imageControl === 'assetImage'" >
-               <angular-image-viewer  [src]="['../../../../assets/image/branch_1.jpg', '../../../../assets/image/branch_2.jpg']"></angular-image-viewer>
+<div class="modal" id="myModal" style="overflow: hidden;">
+    <div class="modal-dialog" style="max-width: 600px">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title"><b style="font-size:20px;">Uploaded Images</b></h4>
             </div>
-            <div *ngIf="imageControl === 'incidentImage'" >
-               <angular-image-viewer   [src]="['../../../../assets/image/incident_1.jpg', '../../../../assets/image/incident_2.jpg']"></angular-image-viewer>
-            </div> 
+            <!-- Modal body -->
+            <div *ngIf="imageControl === 'assetImage'">
+                <angular-image-viewer screenHeightOccupied="90"
+                    [src]="['../../../../assets/image/branch_1.jpg', '../../../../assets/image/branch_2.jpg']">
+                </angular-image-viewer>
             </div>
-                   
-       </div>
-   </div>
-   </form>
+            <div *ngIf="imageControl === 'incidentImage'">
+                <angular-image-viewer screenHeightOccupied="90"
+                    [src]="['../../../../assets/image/incident_1.jpg', '../../../../assets/image/incident_2.jpg']">
+                </angular-image-viewer>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
 import { SharedServiceService } from '../../shared/shared-service.service';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -30,7 +29,6 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   createSaveButton:string = 'Create';
 
   public handleAddressChange(address: any) {
-    // console.log(address.formatted_address);
     this.curAddress = address.formatted_address;
   }
 
@@ -92,7 +90,6 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   }
 
   patchAssetForm(editData) {
-    // console.log('editData', editData);
     this.createAssetForm.patchValue({
       name: editData.name,
       category: editData.category,
@@ -103,6 +100,7 @@ export class CreateAssetComponent implements OnInit, OnChanges {
       status: editData.status,
     });
   }
+
   public cancel() {
     this.createAssetForm.reset();
     this.dialogRef.close();

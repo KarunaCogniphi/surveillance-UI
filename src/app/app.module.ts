@@ -13,10 +13,8 @@ import { SlaComponent } from './components/sla/sla.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CreateAssetComponent } from './components/asset-list/create-asset/create-asset.component';
 import { IncidentListComponent } from './components/incident/incident-list/incident-list.component';
-import { EditAssetComponent } from './components/asset-list/edit-asset/edit-asset.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddIncidentComponent } from './components/incident/add-incident/add-incident.component';
-import { EditIncidentComponent } from './components/incident/edit-incident/edit-incident.component';
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { ChartsModule } from 'ng2-charts';
 import { FileUploadComponent } from './components/shared/file-upload/file-upload.component';
@@ -37,9 +35,7 @@ import { CommonDialogComponent } from './components/shared/common-dialog/common-
     SlaComponent,
     CreateAssetComponent,
     IncidentListComponent,
-    EditAssetComponent,
     AddIncidentComponent,
-    EditIncidentComponent,
     AlertsComponent,
     FileUploadComponent,
     ImageViewComponent,

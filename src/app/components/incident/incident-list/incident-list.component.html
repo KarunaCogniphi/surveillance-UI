@@ -149,7 +149,7 @@
                      <ng-container matColumnDef="action" stickyEnd>
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
                         <td mat-cell *matCellDef="let element">
-                           <i class="far fa-images icon-blue cursor-pointer mr-2" matTooltip="Image Preview" (click)="onTabClick('imageSource')"></i>
+                           <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="modal" data-target="#myModal" matTooltip="Image Preview" (click)="iconClick('imageSource')"></i>
                            <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" matTooltip="Attachment"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" matTooltip="Edit Row" (click)="openDialog('Edit', element)"></i>
                         </td>
@@ -166,6 +166,4 @@
       </div>
    </div>
 </div>
-<!-- <add-incident *ngIf="tabIndex === 'add-incident'" [curRow]="curRow"></add-incident>
-<edit-incident *ngIf="tabIndex === 'edit-incident'" [curRow]="curRow"></edit-incident> -->
-<image-view *ngIf="tabIndex === 'imageSource'" [imageControl]="'incidentImage'"></image-view>
+<image-view *ngIf="iconName === 'imageSource'" [imageControl]="'incidentImage'"></image-view>

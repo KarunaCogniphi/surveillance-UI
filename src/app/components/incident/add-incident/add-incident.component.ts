@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SharedServiceService } from '../../shared/shared-service.service';
 
@@ -45,6 +45,7 @@ export class AddIncidentComponent implements OnInit {
     });
     this.getMode();
   }
+
   ngOnChanges() {
   }
 
@@ -78,7 +79,6 @@ export class AddIncidentComponent implements OnInit {
   }
 
   patchIncidentForm(editData) {
-    // console.log('editData', editData);
     this.createIncidentForm.patchValue({
       id: editData.id,
       desc: editData.desc,
@@ -95,7 +95,6 @@ export class AddIncidentComponent implements OnInit {
   }
 
   public handleAddressChange(address: any) {
-    // console.log(address.formatted_address);
     this.curAddress = address.formatted_address;
   }
   createIncident(formData) {
