@@ -1,149 +1,164 @@
 <form class="assetForm" [formGroup]="createAssetForm">
-   <!-- <div class="modal" id="myModal"> -->
-      <div style="max-width: 600px; overflow: auto;">
-         <!-- <div class="modal-content"> -->
-            <div class="modal-header" style="background-color:#c9cfdf !important">
-               <h4 class="modal-title"><b style="font-size:20px;">Add Asset</b></h4>
-               <button type="button" class="close" (click)="cancel()">&times;</button>
-            </div>
-            <div class="modal-body">
-               <div>
-                  <div class="row">
-                  <!--   <div class="col-md-3">
+   <div style="max-width: 550px; overflow: auto;">
+      <!-- <div> -->
+      <div>
+         <h4 class="modal-title"><b style="font-size:20px;">{{mode}} Asset</b>
+            <button type="button" class="close" (click)="cancel()">&times;</button>
+         </h4>
+      </div>
+      <hr>
+      <div class="modal-body" style="padding-top: 2px;">
+         <div>
+            <div class="row">
+               <!--   <div class="col-md-3">
                         <div class="form-group">
                            <label class="f-w-600 title-head-ash">ID</label>
                            <input type="text" class="form-control" disabled id="name1"
                               formControlName="id">
                         </div>
                      </div> -->
-                     <div class="col-md-9">
-                        <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Asset Name*</label>
-                           <input type="text" class="form-control" id="name2" formControlName="name">
-                        </div>
-                     </div>
+               <div class="col-md-12">
+                  <div class="form-group">
+                     <label class="f-w-600 title-head-ash">Asset Name*</label>
+                     <input type="text" class="form-control" id="name2" formControlName="name">
                   </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label for="sel3" class="f-w-600 title-head-ash">Asset Category*</label>
-                           <select class="form-control" id="sel3" formControlName="category" placeholder="Unit Price">
-                              <!-- <option *ngIf="categoryValue">{{categoryValue}}</option> -->
-                              <option  *ngFor="let category of categoryArray" value="{{ category }}">{{category}}</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Asset Value</label>
-                           <input type="text" class="form-control" id="name3" formControlName="value">
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label for="sel4" class="f-w-600 title-head-ash">Priority*</label>
-                           <select class="form-control" id="sel4" formControlName="priority">
-                              <option *ngFor="let priority of priorityArray" value="{{ priority }}">{{priority}}</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Location*</label>
-                           <input type="text" class="form-control" id="name4" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" formControlName="location"/>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- upload image start -->
-                  <file-upload [fileControl]="imageUploadObj" ></file-upload>
-                  <!-- upload image start -->
-                  <div class="row mt-3">
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <label class="f-w-600 title-head-ash">Assigned To</label>
-                           <input type="text" class="form-control" id="name5" formControlName="assignedTo">
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group m-0">
-                           <label class="f-w-600 title-head-ash">From Date</label>
-                           <div class="input-group date datetimepicker">
-                              <div class="input-group-prepend input-group-addon ">
-                                 <div class="input-group-text bg-white pad-btn-radius-left">
-                                    <!-- <mat-datepicker-toggle class="far" matSuffix [for]="picker" style="z-index: 10;"> -->
-                                    <i class="far fa-calendar-alt f-20"></i>
-                                    <!-- </mat-datepicker-toggle> -->
-                                 </div>
-                              </div>
-                              <input  class="form-control border-radius-4" type="date" />
-                             <!--  <mat-datepicker-toggle matSuffix [for]="basicDatePicker"></mat-datepicker-toggle> 
-                              <mat-datepicker #basicDatePicker> </mat-datepicker>
-                              <mat-datepicker #picker startView="year" [startAt]="startDate" style="z-index: 10;">
-                              </mat-datepicker>-->
-                           </div>
-                        </div>
-                        <!-- <mat-form-field appearance="fill" >
-                           <mat-label>Choose a date</mat-label>
-                           <input matInput [matDatepicker]="picker">
-                           
-                         </mat-form-field> -->
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group m-0">
-                           <label class="f-w-600 title-head-ash">To Date</label>
-                           <div class="input-group date datetimepicker">
-                              <div class="input-group-prepend input-group-addon ">
-                                 <div class="input-group-text bg-white pad-btn-radius-left"><i
-                                       class="far fa-calendar-alt f-20"></i></div>
-                              </div>
-                              <input type='text' class="form-control border-radius-4" type="date" />
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <label for="sel1" class="f-w-600 title-head-ash">Type*</label>
-                           <select class="form-control" id="sel1" formControlName="type">
-                              <option *ngFor="let type of typeArray" value="{{ type }}">{{type}}</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="form-group">
-                           <label for="sel2" class="f-w-600 title-head-ash">Status*</label>
-                           <select class="form-control" id="sel2" formControlName="status">
-                              <option *ngFor="let status of statusArray" value="{{ status }}">{{status}}</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="col-md-4">
-                        <div class="bg mt-4">
-                           <div class="chiller_cb">
-                              <input id="saleDeptcheck-vl" type="checkbox">
-                              <label for="saleDeptcheck-vl" class="f-w-600 title-head-ash f-12">If SLA is
-                                 applicable</label>
-                              <span></span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <!-- <div class="row mt-1"> -->
-                     <!-- upload file start -->
-                  <file-upload [fileControl]="fileUploadObj" ></file-upload>
-                  <!-- upload file start -->
-                  <!-- </div> -->
                </div>
             </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-bg-darkblue mr-3" [disabled]="!createAssetForm.valid"
-                  (click)="createAsset(createAssetForm.value)">Create</button>
-               <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" (click)="cancel()">Cancel</span>
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="sel3" class="f-w-600 title-head-ash">Asset Category*</label>
+                     <select class="form-control" id="sel3" formControlName="category" placeholder="Unit Price">
+                        <!-- <option *ngIf="categoryValue">{{categoryValue}}</option> -->
+                        <option *ngFor="let category of categoryArray" value="{{ category }}">{{category}}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="f-w-600 title-head-ash">Asset Value</label>
+                     <input type="text" class="form-control" id="name3" formControlName="value">
+                  </div>
+               </div>
             </div>
-         <!-- </div> -->
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label for="sel4" class="f-w-600 title-head-ash">Priority*</label>
+                     <select class="form-control" id="sel4" formControlName="priority">
+                        <option *ngFor="let priority of priorityArray" value="{{ priority }}">{{priority}}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="f-w-600 title-head-ash">Location*</label>
+                     <input type="text" class="form-control" id="name4" ngx-google-places-autocomplete
+                        #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+                        formControlName="location" />
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-8">
+                  <!-- upload image start -->
+                  <file-upload [fileControl]="imageUploadObj"></file-upload>
+                  <!-- upload image end -->
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label class="f-w-600 title-head-ash">Assigned To</label>
+                     <input type="text" class="form-control" id="name5" formControlName="assignedTo">
+                  </div>
+               </div>
+            </div>
+            <div class="row mt-3">
+               <div class="col-md-6">
+                  <div class="form-group m-0">
+                     <label class="f-w-600 title-head-ash">From Date</label>
+                     <div class="input-group date datetimepicker">
+                        <!-- <div class="input-group-prepend input-group-addon ">
+                           <div class="input-group-text bg-white pad-btn-radius-left">
+                              <i class="far fa-calendar-alt f-20"></i>
+                           </div>
+                        </div>
+                        <input class="form-control border-radius-4" type="date" /> -->
+                        <mat-form-field appearance="fill">
+                           <mat-label>Choose a from date</mat-label>
+                           <input matInput [matDatepicker]="startPicker">
+                           <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                           <mat-datepicker #startPicker></mat-datepicker>
+                        </mat-form-field>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group m-0">
+                     <label class="f-w-600 title-head-ash">To Date</label>
+                     <div class="input-group date datetimepicker">
+                        <mat-form-field appearance="fill">
+                           <mat-label>Choose a to date</mat-label>
+                           <input matInput [matDatepicker]="endPicker">
+                           <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                           <mat-datepicker #endPicker></mat-datepicker>
+                        </mat-form-field>
+                     </div>
+                  </div>
+               </div>
+               <!-- <div class="col-md-4">
+                  <div class="form-group m-0">
+                     <label class="f-w-600 title-head-ash">To Date</label>
+                     <div class="input-group date datetimepicker">
+                        <div class="input-group-prepend input-group-addon ">
+                           <div class="input-group-text bg-white pad-btn-radius-left"><i
+                                 class="far fa-calendar-alt f-20"></i></div>
+                        </div>
+                        <input type='text' class="form-control border-radius-4" type="date" />
+                     </div>
+                  </div>
+               </div> -->
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label for="sel1" class="f-w-600 title-head-ash">Type*</label>
+                     <select class="form-control" id="sel1" formControlName="type">
+                        <option *ngFor="let type of typeArray" value="{{ type }}">{{type}}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="form-group">
+                     <label for="sel2" class="f-w-600 title-head-ash">Status*</label>
+                     <select class="form-control" id="sel2" formControlName="status">
+                        <option *ngFor="let status of statusArray" value="{{ status }}">{{status}}</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="bg mt-4">
+                     <div class="chiller_cb">
+                        <input id="saleDeptcheck-vl" type="checkbox">
+                        <label for="saleDeptcheck-vl" class="f-w-600 title-head-ash f-12">If SLA is
+                           applicable</label>
+                        <span></span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-8">
+                  <!-- upload file start -->
+                  <file-upload [fileControl]="fileUploadObj"></file-upload>
+                  <!-- upload file start -->
+               </div>
+            </div>
+         </div>
       </div>
-   <!-- </div> -->
+      <div class="modal-footer">
+         <button type="button" class="btn btn-bg-darkblue mr-3" [disabled]="!createAssetForm.valid"
+            (click)="createAsset(createAssetForm.value)">{{createSaveButton}}</button>
+         <span class="mr-3 text-datkgreen f-w-600 cursor-pointer" (click)="cancel()">Cancel</span>
+      </div>
+   </div>
 </form>

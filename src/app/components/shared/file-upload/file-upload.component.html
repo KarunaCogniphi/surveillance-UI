@@ -1,13 +1,5 @@
-<!-- <div class="file btn btn-lg upload-btn-drop">
-    <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label class="f-w-600 title-head-ash f-12">Upload Image</label>
-    <input type="file" class="upload-input-drop" #Image (change)="handleFileInput($event)" />
-</div>
-<ul>
-    <li *ngFor="let image of imageFiles"><span>{{image.name}}</span><span class="close" style="display: block;"
-            (click)="removeImage(image)">&times;</span></li>
-</ul> -->
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <label *ngIf="label" class="f-w-600 title-head-ash">{{label}}</label>
         <div class="file btn btn-lg upload-btn-drop">
             <i class="fas fa-cloud-upload-alt cloud-upload"></i> <label class="f-w-600 title-head-ash f-12">{{viewText}}</label>
@@ -22,7 +14,7 @@
        <img [src]="imageUrl" class="image img-fluid img-thumbnail">
     </div> -->
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div style="margin-top: 28px;">
             <button type="button" class="btn btn-small" (click)="plusButton.click()">
                 <i class="fas fa-plus f-16"></i>

@@ -18,17 +18,19 @@ export class AddIncidentComponent implements OnInit {
   priorityArray = ['Select Priority', 'Critical', 'Medium', 'Low'];
   categoryArray = ['Select Category', 'Security Breach', 'Crowd Control', 'Anonymous report'];
   subCategoryArray = ['Select Category', 'Unauthorized', 'Cafe Area', 'Vehicle movement'];
-  
+
   fileUploadObj = { label: 'Upload Document', viewText: 'Upload Document' };
   createIncidentForm: FormGroup;
   curAddress: any;
   editDataFromIncidentList: any;
+  mode: string = 'Create New Incident';
+  createSaveButton:string = 'Create';
 
-  constructor(private formbuilder: FormBuilder, private sharedService:SharedServiceService, private dialogRef: MatDialogRef<AddIncidentComponent>) { }
+  constructor(private formbuilder: FormBuilder, private sharedService: SharedServiceService, private dialogRef: MatDialogRef<AddIncidentComponent>) { }
 
   ngOnInit(): void {
     this.createIncidentForm = this.formbuilder.group({
-      id:[],
+      id: [],
       desc: [],
       assetId: [''],
       status: [],
@@ -39,18 +41,22 @@ export class AddIncidentComponent implements OnInit {
       associatedAlert: 'NA',
       slaBreach: 'No',
       assignedTo: [''],
-      creationTime:new Date().getHours +':'+new Date().getMilliseconds
+      creationTime: new Date().getHours + ':' + new Date().getMilliseconds
     });
     this.getMode();
   }
   ngOnChanges() {
   }
-  
+
   getMode() {
     this.sharedService.incidentMode$.subscribe({
       next: (data: any) => {
-       if(data === 'Edit') {
+        if (data === 'Edit') {
+          this.createSaveButton = 'Save';
+          this.mode = 'Edit Incident';
           this.editIncident();
+        } else {
+          this.mode = 'Create New Incident';
         }
       },
       error: err => { },
@@ -91,9 +97,9 @@ export class AddIncidentComponent implements OnInit {
   public handleAddressChange(address: any) {
     // console.log(address.formatted_address);
     this.curAddress = address.formatted_address;
-}
+  }
   createIncident(formData) {
-    if(formData) {
+    if (formData) {
       this.sharedService.incidentValue.next(formData);
       this.closeDialog();
     }

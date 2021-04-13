@@ -93,10 +93,6 @@ td:last-child {
   white-space: nowrap;
 }
 
-.title-head-ash{
-  color: #8d8e91;
-}
-
 .dot-red::before{
     content: "";
     width: 8px;
@@ -312,18 +308,6 @@ td:last-child {
 }
 
 
-
-/* .close {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 0%;
-  padding: 12px 16px;
-  transform: translate(0%, -50%);
-} */
-
-/* .close:hover {background: #bbb;} */
-
 .text {
   display: block;
   width: 100px;
@@ -337,6 +321,7 @@ td:last-child {
 }
 
 .modal-bg{ background-color: #a7a7a791;  }
+
 
 
 

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "~bootstrap/dist/css/bootstrap.css" */
 
-
+/* @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css"; */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -57,7 +57,13 @@ th {
   background-color: #f6f6fa;
 }
 
-.cdk-global-overlay-wrapper {
+button:focus {outline:0;}
+
+.title-head-ash{
+  color: rgba(0,0,0,.87);
+}
+
+/* .cdk-global-overlay-wrapper {
   pointer-events: auto;
   display: block;
   position: relative;
@@ -65,16 +71,9 @@ th {
   text-align: center;
 }
 
-/* .cdk-global-overlay-wrapper::before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  white-space: nowrap;
-} */
-
 .cdk-overlay-pane {
   display: inline-block;
   position: relative;
   text-align: left;
   white-space: normal;
-}
+} */

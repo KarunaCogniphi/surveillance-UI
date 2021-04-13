@@ -168,3 +168,15 @@ background: #f3bc06;
   position: absolute;
   top:10px;
 }
+
+.card-box{
+  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+}
+
+/* .mat-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+} */

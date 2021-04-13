@@ -26,6 +26,8 @@ export class CreateAssetComponent implements OnInit, OnChanges {
 
   curAddress: any;
   editDataFromAssetList: any;
+  mode:string = 'Add';
+  createSaveButton:string = 'Create';
 
   public handleAddressChange(address: any) {
     // console.log(address.formatted_address);
@@ -49,11 +51,9 @@ export class CreateAssetComponent implements OnInit, OnChanges {
       status: ['', Validators.required]
     });
     this.getMode();
-    // this.editAsset();
   }
 
   ngOnChanges() {
-    // this.createAssetForm.reset();
   }
 
   createAsset(formData) {
@@ -67,7 +67,9 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   getMode() {
     this.sharedService.assetMode$.subscribe({
       next: (data: any) => {
+        this.mode = data;
        if(data === 'Edit') {
+          this.createSaveButton = 'Save';
           this.editAsset();
         }
       },

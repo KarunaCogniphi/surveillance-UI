@@ -323,3 +323,17 @@ td:last-child {
   color: #aaa;
 }
 
+/* .cdk-global-overlay-wrapper {
+  pointer-events: auto;
+  display: block;
+  position: relative;
+  overflow: auto;
+  text-align: center;
+}
+
+.cdk-overlay-pane {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  white-space: normal;
+} */

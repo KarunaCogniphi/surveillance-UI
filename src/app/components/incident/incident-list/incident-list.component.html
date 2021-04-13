@@ -100,8 +100,9 @@
                         </td>
                      </ng-container>
 
-                      <ng-container matColumnDef="associatedAlert">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Associated Alert </th>
+                     <ng-container matColumnDef="associatedAlert">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Associated Alert
+                        </th>
                         <td mat-cell *matCellDef="let element"> {{element.associatedAlert}} </td>
                      </ng-container>
 
@@ -145,21 +146,17 @@
                         </td>
                      </ng-container>
 
-                     <ng-container matColumnDef="action">
+                     <ng-container matColumnDef="action" stickyEnd>
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
                         <td mat-cell *matCellDef="let element">
-                           <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="tooltip"
-                              data-placement="top" title="" data-original-title="image" data-toggle="modal" data-target="#myModal" (click)="onTabClick('imageSource')"></i>
-                           <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" data-toggle="tooltip"
-                              data-placement="top" title="" data-original-title="link"></i>
-                           <i class="fas fa-edit icon-blue cursor-pointer" data-toggle="tooltip" data-placement="top"
-                              title="" data-original-title="Edit" (click)="openDialog('Edit', element)"
-                              data-toggle="modal" data-target="#myModal"></i>
+                           <i class="far fa-images icon-blue cursor-pointer mr-2" matTooltip="Image Preview" (click)="onTabClick('imageSource')"></i>
+                           <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" matTooltip="Attachment"></i>
+                           <i class="fas fa-edit icon-blue cursor-pointer" matTooltip="Edit Row" (click)="openDialog('Edit', element)"></i>
                         </td>
                      </ng-container>
 
                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
+                     <tr mat-row *matRowDef="let row; columns: displayedColumns;">
                      </tr>
                   </table>
                   <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>

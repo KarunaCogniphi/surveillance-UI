@@ -148,6 +148,7 @@ export class IncidentListComponent implements OnInit {
 
   openDialog(mode: string, editRow?: any): void {
     let dialogRef = this.dialog.open(CommonDialogComponent, {
+      height: '98%',
       data: { component: AddIncidentComponent }
     });
 
