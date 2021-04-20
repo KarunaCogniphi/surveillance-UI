@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CommonDialogComponent } from '../../shared/common-dialog/common-dialog.component';
-import { SharedServiceService } from '../../shared/shared-service.service';
+import { IncidentService } from '../../../services/incident/incident.service';
 import { AddIncidentComponent } from '../add-incident/add-incident.component';
 
 export interface PeriodicElement {
@@ -45,17 +45,14 @@ export class IncidentListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = ['select', 'id', 'desc', 'assetId', 'priority', 'severity', 'associatedAlert', 'slaBreach', 'category', 'subCategory', 'creationTime', 'assignedTo', 'status', 'remark', 'action'];
-  tabIndex: any;
-  curRow: any;
-  incidentName: any;
   iconName: string;
 
-  constructor(public dialog: MatDialog, private sharedService:SharedServiceService) { }
+  constructor(public dialog: MatDialog, private incidentService:IncidentService) { }
 
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.incidentListData);
-    this.sharedService.incidentValue$.subscribe({
+    this.incidentService.incidentValue$.subscribe({
       next: (data:any) => {
         if(!!data && Object.keys(data).length>0)
         {
@@ -153,10 +150,10 @@ export class IncidentListComponent implements OnInit {
     });
 
     // update mode in shared service
-    this.sharedService.incidentMode.next(mode);
+    this.incidentService.incidentMode.next(mode);
 
     if (mode === 'Edit') {
-      this.sharedService.editIncidentValue.next(editRow);
+      this.incidentService.editIncidentValue.next(editRow);
     }
   }
 

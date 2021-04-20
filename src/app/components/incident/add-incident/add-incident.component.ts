@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SharedServiceService } from '../../shared/shared-service.service';
+import { IncidentService } from '../../../services/incident/incident.service';
+import{ GlobalConstants } from '../../../common/global-constants';
 
 @Component({
   selector: 'add-incident',
@@ -13,11 +14,17 @@ export class AddIncidentComponent implements OnInit {
   @Output() public child = new EventEmitter<String>();
   @Output() public formData = new EventEmitter<String>();
 
-  statusArray = ['Select Status', 'Close', 'Open', 'InProgress'];
-  severityArray = ['Select Severity', 'Critical', 'High', 'Medium', 'Low'];
-  priorityArray = ['Select Priority', 'Critical', 'Medium', 'Low'];
-  categoryArray = ['Select Category', 'Security Breach', 'Crowd Control', 'Anonymous report'];
-  subCategoryArray = ['Select Category', 'Unauthorized', 'Cafe Area', 'Vehicle movement'];
+  // statusArray = ['Select Status', 'Close', 'Open', 'InProgress'];
+  // severityArray = ['Select Severity', 'Critical', 'High', 'Medium', 'Low'];
+  // priorityArray = ['Select Priority', 'Critical', 'Medium', 'Low'];
+  // categoryArray = ['Select Category', 'Security Breach', 'Crowd Control', 'Anonymous report'];
+  // subCategoryArray = ['Select Category', 'Unauthorized', 'Cafe Area', 'Vehicle movement'];
+
+  statusArray = GlobalConstants.statusArray;
+  severityArray = GlobalConstants.severityArray;
+  priorityArray = GlobalConstants.priorityArray;
+  categoryArray = GlobalConstants.categoryArray;
+  subCategoryArray =GlobalConstants.subCategoryArray;
 
   fileUploadObj = { label: 'Upload Document', viewText: 'Upload Document' };
   createIncidentForm: FormGroup;
@@ -26,7 +33,7 @@ export class AddIncidentComponent implements OnInit {
   mode: string = 'Create New Incident';
   createSaveButton:string = 'Create';
 
-  constructor(private formbuilder: FormBuilder, private sharedService: SharedServiceService, private dialogRef: MatDialogRef<AddIncidentComponent>) { }
+  constructor(private formbuilder: FormBuilder, private incidentService: IncidentService, private dialogRef: MatDialogRef<AddIncidentComponent>) { }
 
   ngOnInit(): void {
     this.createIncidentForm = this.formbuilder.group({
@@ -50,7 +57,7 @@ export class AddIncidentComponent implements OnInit {
   }
 
   getMode() {
-    this.sharedService.incidentMode$.subscribe({
+    this.incidentService.incidentMode$.subscribe({
       next: (data: any) => {
         if (data === 'Edit') {
           this.createSaveButton = 'Save';
@@ -66,7 +73,7 @@ export class AddIncidentComponent implements OnInit {
   }
 
   editIncident() {
-    this.sharedService.editIncidentValue$.subscribe({
+    this.incidentService.editIncidentValue$.subscribe({
       next: (data: any) => {
         if (!!data && Object.keys(data).length > 0) {
           this.editDataFromIncidentList = data;
@@ -99,7 +106,7 @@ export class AddIncidentComponent implements OnInit {
   }
   createIncident(formData) {
     if (formData) {
-      this.sharedService.incidentValue.next(formData);
+      this.incidentService.incidentValue.next(formData);
       this.closeDialog();
     }
   }

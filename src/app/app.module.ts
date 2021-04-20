@@ -23,6 +23,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AngularImageViewerModule } from "angular-x-image-viewer";
 import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
 import { CommonDialogComponent } from './components/shared/common-dialog/common-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,9 +51,12 @@ import { CommonDialogComponent } from './components/shared/common-dialog/common-
     ReactiveFormsModule,
     ChartsModule,
     GooglePlaceModule,
-    AngularImageViewerModule
+    AngularImageViewerModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CommonDialogComponent } from '../shared/common-dialog/common-dialog.component';
-import { SharedServiceService } from '../shared/shared-service.service';
+import { AssetService } from '../../services/asset/asset.service';
 import { CreateAssetComponent } from './create-asset/create-asset.component';
 
 export interface PeriodicElement {
@@ -46,12 +46,12 @@ export class AssetListComponent implements OnInit {
   displayedColumns: string[] = ['select', 'id', 'name', 'category', 'priority', 'location', 'associatedAlerts', 'associatedIncidents', 'assignedTo', 'type', 'status', 'options'];
   iconName: string;
 
-  constructor(public dialog: MatDialog, private sharedService: SharedServiceService) { }
+  constructor(public dialog: MatDialog, private assetService: AssetService) { }
 
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.assetListData);
-    this.sharedService.assetValue$.subscribe({
+    this.assetService.assetValue$.subscribe({
       next: (data: any) => {
         if (!!data && Object.keys(data).length > 0) {
           // this.newRowdata = data;
@@ -121,10 +121,10 @@ export class AssetListComponent implements OnInit {
     });
 
     // update mode in shared service
-    this.sharedService.assetMode.next(mode);
+    this.assetService.assetMode.next(mode);
 
     if (mode === 'Edit') {
-      this.sharedService.editAssetValue.next(editRow);
+      this.assetService.editAssetValue.next(editRow);
     }
   }
 }

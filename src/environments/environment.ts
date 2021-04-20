@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  localhost: 'http://localhost:8200',
+  API_ENDPOINT_ADN: 'http://dev-api-hartmann-info.hrt.cloud:6051/api/',
 };
 
 /*

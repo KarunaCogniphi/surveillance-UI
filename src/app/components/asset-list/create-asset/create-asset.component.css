@@ -316,9 +316,6 @@ td:last-child {
   text-overflow: ellipsis;
 }
 
-#my_file {
-  display: none;
-}
 
 .modal-bg{ background-color: #a7a7a791;  }
 

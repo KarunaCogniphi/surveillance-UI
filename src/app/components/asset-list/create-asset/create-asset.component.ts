@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
-import { SharedServiceService } from '../../shared/shared-service.service';
+import { AssetService } from '../../../services/asset/asset.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -32,7 +32,7 @@ export class CreateAssetComponent implements OnInit, OnChanges {
     this.curAddress = address.formatted_address;
   }
 
-  constructor(private formbuilder: FormBuilder, private sharedService: SharedServiceService, private dialogRef: MatDialogRef<CreateAssetComponent>) { }
+  constructor(private formbuilder: FormBuilder, private assetService: AssetService, private dialogRef: MatDialogRef<CreateAssetComponent>) { }
 
   ngOnInit(): void {
     this.createAssetForm = this.formbuilder.group({
@@ -57,13 +57,13 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   createAsset(formData) {
     formData.location = this.curAddress;
     if (formData) {
-      this.sharedService.assetValue.next(formData);
+      this.assetService.assetValue.next(formData);
       this.cancel();
     }
   }
 
   getMode() {
-    this.sharedService.assetMode$.subscribe({
+    this.assetService.assetMode$.subscribe({
       next: (data: any) => {
         this.mode = data;
        if(data === 'Edit') {
@@ -77,7 +77,7 @@ export class CreateAssetComponent implements OnInit, OnChanges {
   }
 
   editAsset() {
-    this.sharedService.editAssetValue$.subscribe({
+    this.assetService.editAssetValue$.subscribe({
       next: (data: any) => {
         if (!!data && Object.keys(data).length > 0) {
           this.editDataFromAssetList = data;
