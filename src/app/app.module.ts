@@ -23,6 +23,7 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { AngularImageViewerModule } from "angular-x-image-viewer";
 import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
 import { CommonDialogComponent } from './components/shared/common-dialog/common-dialog.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,11 @@ import { CommonDialogComponent } from './components/shared/common-dialog/common-
     ReactiveFormsModule,
     ChartsModule,
     GooglePlaceModule,
-    AngularImageViewerModule
+    AngularImageViewerModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCqNPh0W9r1Xu4a2niKwcFzQNyJSpg9c9M',
+      libraries: ['places']
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

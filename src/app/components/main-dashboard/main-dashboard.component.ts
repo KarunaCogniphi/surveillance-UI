@@ -9,13 +9,23 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MainDashboardComponent implements OnInit {
 
+  title: string = 'AGM project';
+  latitude: number;
+  longitude: number;
+  zoom:number;
+
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {
+    this.setCurrentLocation();
   }
-
-  // openDialog(): void {
-  //   let dialogRef = this.dialog.open(CommonDialogComponent, {
-  //     data: { component: CreateAssetComponent }
-  //   });
-  // }
+// Get Current Location Coordinates
+private setCurrentLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      this.zoom = 15;
+    });
+  }
+}
 }
