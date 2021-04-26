@@ -24,6 +24,7 @@ import { AngularImageViewerModule } from "angular-x-image-viewer";
 import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
 import { CommonDialogComponent } from './components/shared/common-dialog/common-dialog.component';
 import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AgmCoreModule } from '@agm/core';
     CommonDialogComponent 
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

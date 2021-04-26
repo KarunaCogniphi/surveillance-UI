@@ -8,7 +8,7 @@
   
     <div class="form-group">
       <label>Enter address</label>
-      <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+      <input type="text" [(ngModel)]="address" class="form-control" (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
     </div>
   
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
