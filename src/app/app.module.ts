@@ -26,6 +26,7 @@ import { CommonDialogComponent } from './components/shared/common-dialog/common-
 import { HttpClientModule } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
+import { MapsComponent } from './components/shared/maps/maps.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     FileUploadComponent,
     ImageViewComponent,
     IncidentChatViewComponent,
-    CommonDialogComponent 
+    CommonDialogComponent,
+    MapsComponent 
   ],
   imports: [
     FormsModule,

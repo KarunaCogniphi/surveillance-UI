@@ -1,0 +1,16 @@
+agm-map {
+    height: 300px;
+}
+.text-blue{
+    color: #131432 !important;
+}
+.border-radius-none{
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+/* .pos-t-20{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  } */
+  
