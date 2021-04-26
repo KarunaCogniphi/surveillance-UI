@@ -149,6 +149,7 @@
                      <ng-container matColumnDef="action" stickyEnd>
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Action </th>
                         <td mat-cell *matCellDef="let element">
+                           <i class="fa fa-pencil icon-blue cursor-pointer mr-2" matTooltip="Create Virtual Room"></i>
                            <i class="far fa-images icon-blue cursor-pointer mr-2" data-toggle="modal" data-target="#myModal" matTooltip="Image Preview" (click)="iconClick('imageSource')"></i>
                            <i class="fas fa-paperclip icon-blue cursor-pointer mr-2" matTooltip="Attachment"></i>
                            <i class="fas fa-edit icon-blue cursor-pointer" matTooltip="Edit Row" (click)="openDialog('Edit', element)"></i>

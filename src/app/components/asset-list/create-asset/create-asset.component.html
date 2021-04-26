@@ -60,6 +60,20 @@
                </div>
             </div>
             <div class="row">
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="f-w-600 title-head-ash">Primary contact</label>
+                     <input type="text" class="form-control" formControlName="primaryContact">
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group">
+                     <label class="f-w-600 title-head-ash">Secondary contact</label>
+                     <input type="text" class="form-control" formControlName="secondaryContact">
+                  </div>
+               </div>
+            </div>
+            <div class="row">
                <div class="col-md-8">
                   <!-- upload image start -->
                   <file-upload [fileControl]="imageUploadObj"></file-upload>

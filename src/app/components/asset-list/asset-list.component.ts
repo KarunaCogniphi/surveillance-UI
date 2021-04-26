@@ -14,6 +14,8 @@ export interface PeriodicElement {
   category: string;
   priority: string;
   location: string;
+  primaryContact: string;
+  secondaryContact: string;
   associatedAlerts: string;
   associatedIncidents: string;
   assignedTo: string;
@@ -32,10 +34,10 @@ export class AssetListComponent implements OnInit {
 
   // dataSource = new MatTableDataSource<any>();
   assetListData = [
-    { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
-    { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', associatedAlerts: '1', associatedIncidents: '4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
-    { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
-    { id: 'BM 4', name: 'Branch 4', category: 'Industry', priority: 'Low', location: '4th line, TVM', associatedAlerts: '4', associatedIncidents: '1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
+    { id: 'BM 2', name: 'Branch 2', category: 'Branch', priority: 'Critical', location: '1st line, TVM', primaryContact: 'ad 1', secondaryContact: 'supervisor 1', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0002', type: 'Fixed', status: 'Active', options: 'jj' },
+    { id: 'BM 1', name: 'Branch 1', category: 'ATM', priority: 'High', location: '2nd line, TVM', primaryContact: 'ad 2', secondaryContact: 'supervisor 2', associatedAlerts: '1', associatedIncidents: '4', assignedTo: 'CAM 0001', type: 'Fixed', status: 'Inactive', options: 'jj' },
+    { id: 'BM 3', name: 'Branch 3', category: 'Apartments', priority: 'Medium', location: '3rd line, TVM', primaryContact: 'ad 3', secondaryContact: 'supervisor 3', associatedAlerts: '2', associatedIncidents: '3', assignedTo: 'CAM 0003', type: 'Fixed', status: 'Inactive', options: 'jj' },
+    { id: 'BM 4', name: 'Branch 4', category: 'Industry', priority: 'Low', location: '4th line, TVM', primaryContact: 'ad 4', secondaryContact: 'supervisor 4', associatedAlerts: '4', associatedIncidents: '1', assignedTo: 'CAM 0004', type: 'Fixed', status: 'Active', options: 'jj' },
   ];
   dataSource = new MatTableDataSource<any>();
   selection = new SelectionModel<any>(true, []);
@@ -43,7 +45,7 @@ export class AssetListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @Output() public child = new EventEmitter<String>();
 
-  displayedColumns: string[] = ['select', 'id', 'name', 'category', 'priority', 'location', 'associatedAlerts', 'associatedIncidents', 'assignedTo', 'type', 'status', 'options'];
+  displayedColumns: string[] = ['select', 'id', 'name', 'category', 'priority', 'location', 'primaryContact', 'secondaryContact', 'associatedAlerts', 'associatedIncidents', 'assignedTo', 'type', 'status', 'options'];
   iconName: string;
 
   constructor(public dialog: MatDialog, private assetService: AssetService) { }

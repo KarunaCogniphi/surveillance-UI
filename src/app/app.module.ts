@@ -24,6 +24,8 @@ import { AngularImageViewerModule } from "angular-x-image-viewer";
 import { IncidentChatViewComponent } from './components/incident/incident-chat-view/incident-chat-view.component';
 import { CommonDialogComponent } from './components/shared/common-dialog/common-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonDialogComponent 
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -52,10 +55,11 @@ import { HttpClientModule } from '@angular/common/http';
     ChartsModule,
     GooglePlaceModule,
     AngularImageViewerModule,
-    HttpClientModule
-  ],
-  providers: [
-    
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCqNPh0W9r1Xu4a2niKwcFzQNyJSpg9c9M',
+      libraries: ['places']
+    })
   ],
   bootstrap: [AppComponent]
 })
