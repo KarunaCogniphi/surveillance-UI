@@ -62,18 +62,3 @@ button:focus {outline:0;}
 .title-head-ash{
   color: rgba(0,0,0,.87);
 }
-
-/* .cdk-global-overlay-wrapper {
-  pointer-events: auto;
-  display: block;
-  position: relative;
-  overflow: auto;
-  text-align: center;
-}
-
-.cdk-overlay-pane {
-  display: inline-block;
-  position: relative;
-  text-align: left;
-  white-space: normal;
-} */

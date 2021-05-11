@@ -15,7 +15,7 @@
             <div class="mb-3 pl-3 pr-3 row">
                <div class="col-md-6 mt-2">
                   <span class="pos-ab-10"><i class="fas fa-search f-16 search-ash"></i></span><input type="text"
-                     class="form-control form-border-none ml-3" placeholder="Search by ID, Code or Category" id="search"
+                     class="form-control form-border-none ml-3" placeholder="Search by ID, Name or Category" id="search"
                      (keyup)="applyFilter($event)">
                </div>
                <div class="col-md-6 mt-3">
@@ -96,7 +96,7 @@
                      <ng-container matColumnDef="severity">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-font"> Severity </th>
                         <td mat-cell *matCellDef="let element">
-                           <span [ngClass]="severityStyle(element.severity)">{{element.severity}}</span>
+                           <div [ngClass]="severityStyle(element.severity)">{{element.severity}}</div>
                         </td>
                      </ng-container>
 

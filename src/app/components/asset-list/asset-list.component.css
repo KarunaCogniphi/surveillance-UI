@@ -52,6 +52,10 @@
 table{
   width: 100%;
 }
+th {
+  /* font-size: 15px; */
+  font-weight: 600 !important;
+}
 table,
 th,
 td {
@@ -60,29 +64,43 @@ td {
 tr:hover {
   background-color: #E0E0E0;
 }
-/* tr:first-child {
-  background-color: #E0E0E0;
-  -webkit-box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-  -moz-box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-} 
-th {
-  background-color: #f6f6fa;
-  padding: 12px 15px !important;
-  font-weight: 600 !important;
-}*/
 th,
 td {
-  padding: 12px 15px !important;
+  padding: 12px 16px !important;
 }
 
 td:first-child {
-  text-align: center;
+  /* text-align: center; */
   width: 25px;
 }
 td:last-child {
-  text-align: center;
+  /* text-align: center; */
   width: 50px;
+}
+
+.title-head-ash{
+  color: #8d8e91;
+}
+
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
+.mat-table {
+overflow-x: scroll;
+}
+
+.mat-cell,
+.mat-header-cell {
+word-wrap: initial;
+display: table-cell;
+padding: 0px 10px;
+line-break: unset;
+width: 100%;
+white-space: nowrap;
+overflow: hidden;
+vertical-align: middle;
+font-size: 12px;
 }
 
 .even{
@@ -128,6 +146,7 @@ td:last-child {
     padding: 0.35em 0.4em !important;
     width: 100%;
     border-radius: 20px;
+    text-align: center;
 }
 .badge-medium{
     font-size: 13px !important;
@@ -136,6 +155,7 @@ td:last-child {
     padding: 0.35em 0.4em !important;
     width: 100%;
     border-radius: 20px;
+    text-align: center;
 }
 .badge-high{
     font-size: 13px !important;
@@ -144,6 +164,7 @@ td:last-child {
     padding: 0.35em 0.4em !important;
     width: 100%;
     border-radius: 20px;
+    text-align: center;
 }
 .badge-low{
   font-size: 13px !important;
@@ -152,6 +173,7 @@ td:last-child {
   padding: 0.35em 0.4em !important;
   width: 60px !important;
   border-radius: 20px;
+  text-align: center;
 }
 
 .text-red{
@@ -323,17 +345,3 @@ td:last-child {
   color: #aaa;
 }
 
-/* .cdk-global-overlay-wrapper {
-  pointer-events: auto;
-  display: block;
-  position: relative;
-  overflow: auto;
-  text-align: center;
-}
-
-.cdk-overlay-pane {
-  display: inline-block;
-  position: relative;
-  text-align: left;
-  white-space: normal;
-} */
