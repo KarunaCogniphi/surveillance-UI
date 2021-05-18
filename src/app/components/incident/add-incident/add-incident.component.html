@@ -113,7 +113,7 @@
                     </div>
                 </div> -->
                 <!-- location with Map -->
-                <maps></maps>
+                <maps [editDetails]="editDetails" (addressEmit)="getCurAdd($event)"></maps>
                 <file-upload [fileControl]="fileUploadObj"></file-upload>
                 <div class="row mt-2">
                     <!--  <div class="col-md-4">

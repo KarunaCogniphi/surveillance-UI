@@ -33,9 +33,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       left: 10px;
       font-size: 18px;
       top: 8px;
-  }
+}
 
-  .btn-small{
+.btn-small{
     border-width: 0;
     line-height: 1.538;
     padding: 9px 15px !important;
@@ -49,7 +49,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .header-font {
   font-size: 14px;
-    /* color: #07f3a3; */
     color: rgb(37, 124, 224);
 }
 
@@ -62,3 +61,11 @@ button:focus {outline:0;}
 .title-head-ash{
   color: rgba(0,0,0,.87);
 }
+
+.ellipse{
+  white-space: nowrap; 
+  text-overflow:ellipsis; 
+  overflow: hidden; 
+  max-width:2px;
+}
+

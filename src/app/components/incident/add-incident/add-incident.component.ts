@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IncidentService } from '../../../services/incident/incident.service';
-import{ GlobalConstants } from '../../../common/global-constants';
+import { GlobalConstants } from '../../../common/global-constants';
 
 @Component({
   selector: 'add-incident',
@@ -24,14 +24,15 @@ export class AddIncidentComponent implements OnInit {
   severityArray = GlobalConstants.severityArray;
   priorityArray = GlobalConstants.priorityArray;
   categoryArray = GlobalConstants.categoryArray;
-  subCategoryArray =GlobalConstants.subCategoryArray;
+  subCategoryArray = GlobalConstants.subCategoryArray;
 
   fileUploadObj = { label: 'Upload Document', viewText: 'Upload Document' };
   createIncidentForm: FormGroup;
   curAddress: any;
   editDataFromIncidentList: any;
   mode: string = 'Create New Incident';
-  createSaveButton:string = 'Create';
+  createSaveButton: string = 'Create';
+  editDetails: { location: any; mode: string; };
 
   constructor(private formbuilder: FormBuilder, private incidentService: IncidentService, private dialogRef: MatDialogRef<AddIncidentComponent>) { }
 
@@ -87,6 +88,7 @@ export class AddIncidentComponent implements OnInit {
   }
 
   patchIncidentForm(editData) {
+    this.editDetails = { 'location': editData.location, 'mode': this.mode };
     this.createIncidentForm.patchValue({
       id: editData.id,
       desc: editData.desc,
@@ -103,10 +105,11 @@ export class AddIncidentComponent implements OnInit {
     });
   }
 
-  public handleAddressChange(address: any) {
-    this.curAddress = address.formatted_address;
+  getCurAdd(address: any) {
+    this.curAddress = address;
   }
   createIncident(formData) {
+    formData.location = this.curAddress;
     if (formData) {
       this.incidentService.incidentValue.next(formData);
       this.closeDialog();
